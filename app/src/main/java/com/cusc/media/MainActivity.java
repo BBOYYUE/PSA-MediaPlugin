@@ -7,8 +7,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
+
+    private TextView permissionStatusText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +28,29 @@ public class MainActivity extends Activity {
             });
         }
 
-        checkNotificationListenerPermission();
+        LinearLayout permissionStatusLayout = findViewById(R.id.layout_permission_status);
+        permissionStatusText = findViewById(R.id.text_permission_status);
+
+        permissionStatusLayout.setOnClickListener(v -> {
+            if (!isNotificationServiceEnabled()) {
+                startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
+            }
+        });
     }
 
-    private void checkNotificationListenerPermission() {
-        if (!isNotificationServiceEnabled()) {
-            startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updatePermissionStatus();
+    }
+
+    private void updatePermissionStatus() {
+        if (isNotificationServiceEnabled()) {
+            permissionStatusText.setText(R.string.permission_status_granted);
+            permissionStatusText.setTextColor(getResources().getColor(R.color.green, getTheme()));
+        } else {
+            permissionStatusText.setText(R.string.permission_status_not_granted);
+            permissionStatusText.setTextColor(getResources().getColor(R.color.red, getTheme()));
         }
     }
 

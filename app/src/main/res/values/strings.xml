@@ -5,4 +5,7 @@
     <string name="app_info_title">插件说明</string>
     <string name="app_info">此插件用于实现Blue-i 3.0车机原厂桌面的音乐卡片支持显示和控制第三方音乐APP，安装插件后原多媒体将被覆盖，可点击下方按钮恢复</string>
     <string name="btn_restore">恢复多媒体</string>
+    <string name="permission_status_label">通知读取权限</string>
+    <string name="permission_status_granted">已获取</string>
+    <string name="permission_status_not_granted">未获取</string>
 </resources>

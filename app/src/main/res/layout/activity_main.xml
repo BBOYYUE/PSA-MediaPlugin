@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_info_title"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textColor="@color/status_title"
             android:paddingBottom="8dp" />
 
@@ -49,9 +49,38 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_info"
-            android:textSize="14sp"
+            android:textSize="20sp"
             android:textColor="@color/status_text"
             android:lineSpacingExtra="4dp" />
+
+        <!-- Permission Status -->
+        <LinearLayout
+            android:id="@+id/layout_permission_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/permission_status_label"
+                android:textSize="22sp"
+                android:textColor="@color/status_title" />
+
+            <TextView
+                android:id="@+id/text_permission_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <!-- Action Button -->
@@ -62,7 +91,7 @@
         android:minWidth="200dp"
         android:text="@string/btn_restore"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:background="@drawable/btn_vista_style"
         android:textAllCaps="false"
         android:elevation="4dp"
