@@ -106,8 +106,6 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
                         e.printStackTrace();
                     }
                 }
-                updatePlaybackState(PlaybackStateCompat.STATE_PLAYING);
-                updateMediaMetadata();
             }
 
             @Override
@@ -121,14 +119,12 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
                         e.printStackTrace();
                     }
                 }
-                updatePlaybackState(PlaybackStateCompat.STATE_PAUSED);
             }
 
             @Override
             public void onStop() {
                 super.onStop();
                 Log.d(TAG, "onStop");
-                updatePlaybackState(PlaybackStateCompat.STATE_STOPPED);
             }
 
             @Override
@@ -141,8 +137,6 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
                         e.printStackTrace();
                     }
                 }
-                updatePlaybackState(PlaybackStateCompat.STATE_PLAYING);
-                updateMediaMetadata(); // 切歌时更新元数据
                 Log.d(TAG, "Next");
             }
 
@@ -156,8 +150,6 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
                         e.printStackTrace();
                     }
                 }
-                updatePlaybackState(PlaybackStateCompat.STATE_PLAYING);
-                updateMediaMetadata(); // 切歌时更新元数据
                 Log.d(TAG, "Previous");
             }
         });
