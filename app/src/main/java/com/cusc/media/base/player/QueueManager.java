@@ -12,21 +12,28 @@ public class QueueManager {
     private final List<MediaSessionCompat.QueueItem> mPlayingQueue = new ArrayList<>();
     private final MusicService mMusicService;
 
-    private static final MediaSessionCompat.QueueItem TEST_QUEUE_ITEM;
-    static {
-        // 创建固定ID为0的插件信息
-        MediaDescriptionCompat testDescription = new MediaDescriptionCompat.Builder()
-                .setMediaId("0")
-                .setTitle("PSA工具箱 多媒体插件")
-                .setSubtitle("V1.0")
-                .setIconUri(null)
-                .build();
-        TEST_QUEUE_ITEM = new MediaSessionCompat.QueueItem(testDescription, 0);
-    }
-
+    private final MediaSessionCompat.QueueItem TEST_QUEUE_ITEM;
 
     public QueueManager(MusicService musicService) {
         this.mMusicService = musicService;
+
+        // 动态读取 versionName，作为插件信息条目的副标题
+        String versionName = "未知版本";
+        try {
+            versionName = musicService.getPackageManager()
+                    .getPackageInfo(musicService.getPackageName(), 0)
+                    .versionName;
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to get versionName", e);
+        }
+
+        MediaDescriptionCompat testDescription = new MediaDescriptionCompat.Builder()
+                .setMediaId("0")
+                .setTitle("PSA工具箱 多媒体插件")
+                .setSubtitle(versionName)
+                .setIconUri(null)
+                .build();
+        TEST_QUEUE_ITEM = new MediaSessionCompat.QueueItem(testDescription, 0);
     }
 
     public void updateCurrentSong(MediaBrowserCompat.MediaItem mediaItem) {
