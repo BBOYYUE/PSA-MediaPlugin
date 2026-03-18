@@ -11,7 +11,7 @@ android {
         minSdk = 28
         targetSdk = 34
         versionCode = 5000
-        versionName = "1.0"
+        versionName = "1.1"
         resConfigs("en")
     }
 
