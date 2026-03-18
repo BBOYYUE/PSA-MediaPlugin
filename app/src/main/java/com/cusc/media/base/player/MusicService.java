@@ -2,16 +2,19 @@ package com.cusc.media.base.player;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
+import androidx.annotation.RequiresApi;
 import androidx.media.MediaBrowserServiceCompat;
 import androidx.core.app.NotificationCompat;
-
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.content.ServiceConnection;
@@ -26,22 +29,51 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     private static final String TAG = "SimpleMusicService";
     private static final String MY_MEDIA_ROOT_ID = "media_root_id";
     private static final String CHANNEL_ID = "channel_1";
+
+    /**
+     * 指定广播 Action：外部发送此广播时，MusicService 将检查并按需重新绑定
+     * com.bandwa.openadb 的服务。
+     */
+    public static final String ACTION_REBIND_MEDIA_CONTROL =
+            "com.cusc.media.action.REBIND_MEDIA_CONTROL";
+
     private MediaSessionCompat mediaSession;
     private PlaybackStateCompat.Builder stateBuilder;
     private QueueManager mQueueManager;
     private IMediaControlService mediaControlService;
 
+    /** 标记当前是否已成功绑定 com.bandwa.openadb 的服务 */
+    private boolean isMediaControlBound = false;
+
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             mediaControlService = IMediaControlService.Stub.asInterface(service);
+            isMediaControlBound = true;
             Log.d(TAG, "MediaControlService connected");
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
+            // 对方服务主动关闭时，只清除状态，不自动重绑
+            // 等待下次收到 ACTION_REBIND_MEDIA_CONTROL 广播时再按需重绑
             mediaControlService = null;
-            Log.d(TAG, "MediaControlService disconnected");
+            isMediaControlBound = false;
+            Log.d(TAG, "MediaControlService disconnected, waiting for rebind broadcast");
+        }
+    };
+
+    /**
+     * 广播接收器：收到 ACTION_REBIND_MEDIA_CONTROL 广播后，
+     * 检查绑定状态，若未绑定则重新发起绑定。
+     */
+    private final BroadcastReceiver rebindReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (ACTION_REBIND_MEDIA_CONTROL.equals(intent.getAction())) {
+                Log.d(TAG, "Received rebind broadcast, checking MediaControlService binding...");
+                ensureMediaControlBound();
+            }
         }
     };
 
@@ -59,6 +91,7 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     private static final String PREF_KEY_DURATION = "last_duration";
     private static final String PREF_KEY_ALBUM_ART = "last_album_art";
 
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
     public void onCreate() {
         super.onCreate();
@@ -163,9 +196,30 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         // 步骤7：前台通知
         initNotification();
 
+        // 步骤8：注册广播接收器，监听按需重绑广播
+        IntentFilter filter = new IntentFilter(ACTION_REBIND_MEDIA_CONTROL);
+        registerReceiver(rebindReceiver, filter, Context.RECEIVER_NOT_EXPORTED);
+
+
+        // 步骤9：首次绑定 com.bandwa.openadb 服务
+        ensureMediaControlBound();
+    }
+
+    /**
+     * 检查是否已绑定 com.bandwa.openadb 的媒体控制服务。
+     * 若尚未绑定（首次启动或对方服务重启后），则发起绑定。
+     * 此方法幂等，重复调用不会产生多余绑定。
+     */
+    private void ensureMediaControlBound() {
+        if (isMediaControlBound) {
+            Log.d(TAG, "MediaControlService already bound, skip rebind");
+            return;
+        }
+        Log.d(TAG, "MediaControlService not bound, binding now...");
         Intent intent = new Intent("com.bandwa.openadb.service.BIND_MEDIA_CONTROL");
         intent.setPackage("com.bandwa.openadb");
-        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+        boolean result = bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+        Log.d(TAG, "bindService result: " + result);
     }
 
     // 注册媒体信息回调
@@ -243,6 +297,7 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         saveLastMediaInfo();
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onPlaybackStateChanged(android.media.session.PlaybackState state) {
         if (state == null) return;
@@ -303,8 +358,15 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (serviceConnection != null) {
+        // 注销广播接收器
+        try {
+            unregisterReceiver(rebindReceiver);
+        } catch (IllegalArgumentException e) {
+            Log.w(TAG, "rebindReceiver was not registered", e);
+        }
+        if (isMediaControlBound) {
             unbindService(serviceConnection);
+            isMediaControlBound = false;
         }
         MediaSessionListenerService listenerService = MediaSessionListenerService.getInstance();
         if (listenerService != null) {
