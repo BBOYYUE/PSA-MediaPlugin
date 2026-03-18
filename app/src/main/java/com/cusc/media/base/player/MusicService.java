@@ -45,6 +45,13 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     /** 标记当前是否已成功绑定 com.bandwa.openadb 的服务 */
     private boolean isMediaControlBound = false;
 
+    /** 单例，供 MediaSessionListenerService 在启动后主动触发回调注册 */
+    private static MusicService instance;
+
+    public static MusicService getInstance() {
+        return instance;
+    }
+
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -95,6 +102,7 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         Log.d(TAG, "onCreate");
 
         // 步骤0：恢复上次播放的元数据
@@ -200,9 +208,17 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         IntentFilter filter = new IntentFilter(ACTION_REBIND_MEDIA_CONTROL);
         registerReceiver(rebindReceiver, filter, Context.RECEIVER_NOT_EXPORTED);
 
-
         // 步骤9：首次绑定 com.bandwa.openadb 服务
         ensureMediaControlBound();
+    }
+
+    /**
+     * 由 MediaSessionListenerService 在其 onCreate 完成后主动调用，
+     * 确保 MusicService 重启后能及时重新注册回调，避免 callback 为 null 导致数据丢失。
+     */
+    public void reRegisterCallback() {
+        Log.d(TAG, "reRegisterCallback called by MediaSessionListenerService");
+        registerMediaInfoCallback();
     }
 
     /**
@@ -229,7 +245,9 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
             listenerService.setMediaInfoCallback(this);
             Log.d(TAG, "Registered media info callback");
         } else {
-            Log.w(TAG, "MediaSessionListenerService not started, cannot register callback");
+            // MediaSessionListenerService 尚未启动，尝试启动它；
+            // 启动完成后它的 onCreate 会反向调用 reRegisterCallback() 完成注册
+            Log.w(TAG, "MediaSessionListenerService not started, starting it...");
             startService(new Intent(this, MediaSessionListenerService.class));
         }
     }
@@ -358,6 +376,7 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     @Override
     public void onDestroy() {
         super.onDestroy();
+        instance = null;
         // 注销广播接收器
         try {
             unregisterReceiver(rebindReceiver);

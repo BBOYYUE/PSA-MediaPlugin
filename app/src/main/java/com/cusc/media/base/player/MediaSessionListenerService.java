@@ -40,14 +40,22 @@ public class MediaSessionListenerService extends NotificationListenerService {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        Intent serviceIntent = new Intent();
-        // 设置服务包名和类名（完整路径）
-        serviceIntent.setClassName(
-                "com.cusc.media", // 服务所在的包名
-                "com.cusc.media.base.player.MusicService" // 服务完整类名
-        );
 
-        startForegroundService(serviceIntent);
+        // 若 MusicService 已在运行（比如本服务重启），主动让它重新注册回调，
+        // 避免 mediaInfoCallback 为 null 导致媒体信息无法同步
+        MusicService musicService = MusicService.getInstance();
+        if (musicService != null) {
+            Log.d(TAG, "MusicService already running, triggering callback re-register");
+            musicService.reRegisterCallback();
+        } else {
+            // MusicService 尚未启动，正常拉起
+            Intent serviceIntent = new Intent();
+            serviceIntent.setClassName(
+                    "com.cusc.media",
+                    "com.cusc.media.base.player.MusicService"
+            );
+            startForegroundService(serviceIntent);
+        }
     }
 
     @Override
