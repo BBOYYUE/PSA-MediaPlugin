@@ -90,6 +90,16 @@ public class MediaSessionListenerService extends NotificationListenerService {
             String artist = metadata.getString(MediaMetadata.METADATA_KEY_ARTIST);
             String albumArtUri = metadata.getString(MediaMetadata.METADATA_KEY_ALBUM_ART_URI);
 
+            // 四个字段均与上次一致时，属于播放器重复推送，直接跳过
+            boolean unchanged = duration == lastDuration
+                    && equals(title, lastTitle)
+                    && equals(artist, lastArtist)
+                    && equals(albumArtUri, lastAlbumArtUri);
+            if (unchanged) {
+                Log.d(TAG, "[" + currentPlayingPackage + "] Metadata unchanged, skip");
+                return;
+            }
+
             lastTitle = title;
             lastArtist = artist;
             lastDuration = duration;
@@ -103,6 +113,10 @@ public class MediaSessionListenerService extends NotificationListenerService {
                 mediaInfoCallback.onMediaInfoUpdated(title, artist, duration, albumArtUri);
             }
         }
+    }
+
+    private static boolean equals(String a, String b) {
+        return a == null ? b == null : a.equals(b);
     }
 
     private final MediaController.Callback mControllerCallback = new MediaController.Callback() {
