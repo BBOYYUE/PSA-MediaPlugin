@@ -36,6 +36,8 @@ public class MediaSessionListenerService extends NotificationListenerService {
                 callback.onMediaInfoUpdated(lastTitle, lastArtist, lastDuration, lastAlbumArtUri);
                 Log.d(TAG, "Cached media info pushed to new callback: " + lastTitle + " - " + lastArtist);
             }
+            // 同步推送当前 MediaController，确保 MusicService 重连后立即可以发送控制指令
+            callback.onMediaControllerChanged(mMediaController);
             if (lastPackageName != null) {
                 callback.onPackageChanged(lastPackageName);
             }
@@ -138,6 +140,7 @@ public class MediaSessionListenerService extends NotificationListenerService {
                 currentPlayingPackage = null;
                 lastPackageName = null;
                 if (mediaInfoCallback != null) {
+                    mediaInfoCallback.onMediaControllerChanged(null);
                     mediaInfoCallback.onPackageChanged(null);
                 }
                 Log.d(TAG, "Media session disconnected: " + sbn.getPackageName());
@@ -184,6 +187,7 @@ public class MediaSessionListenerService extends NotificationListenerService {
             currentPlayingPackage = sbn.getPackageName();
             lastPackageName = currentPlayingPackage;
             if (mediaInfoCallback != null) {
+                mediaInfoCallback.onMediaControllerChanged(mMediaController);
                 mediaInfoCallback.onPackageChanged(currentPlayingPackage);
             }
             Log.d(TAG, "Connected to media session: " + currentPlayingPackage + (tokenChanged ? " (Token updated)" : ""));

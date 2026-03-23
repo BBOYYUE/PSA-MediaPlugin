@@ -8,10 +8,6 @@
     <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
         tools:ignore="ProtectedPermissions" />
 
-    <queries>
-        <package android:name="com.bandwa.openadb" />
-    </queries>
-
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="多媒体插件"
