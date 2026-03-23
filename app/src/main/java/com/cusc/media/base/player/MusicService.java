@@ -304,7 +304,9 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         // 使用 title + artist 的哈希值作为 mediaId，保证同一首歌 ID 不变
         // 避免因 ID 变化导致 UI 频繁刷新或专辑图重新加载
         String uniqueKey = latestTitle + latestArtist;
-        currentMediaId = String.valueOf(Math.abs(uniqueKey.hashCode()));
+        String newMediaId = String.valueOf(Math.abs(uniqueKey.hashCode()));
+        boolean songChanged = !newMediaId.equals(currentMediaId);
+        currentMediaId = newMediaId;
 
         // 创建媒体项并更新队列
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
@@ -325,8 +327,10 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         // 更新MediaSession元数据
         updateMediaMetadata();
         
-        // 持久化保存
-        saveLastMediaInfo();
+        // 仅在歌曲切换时持久化，避免同一首歌的重复元数据回调触发多余磁盘写入
+        if (songChanged) {
+            saveLastMediaInfo();
+        }
     }
 
     @SuppressLint("WrongConstant")
