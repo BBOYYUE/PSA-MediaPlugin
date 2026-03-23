@@ -8,4 +8,6 @@
     <string name="permission_status_label">通知读取权限</string>
     <string name="permission_status_granted">已获取</string>
     <string name="permission_status_not_granted">未获取</string>
+    <string name="connected_app_label">当前连接的应用</string>
+    <string name="none">无</string>
 </resources>

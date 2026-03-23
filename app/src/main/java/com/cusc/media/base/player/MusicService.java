@@ -48,6 +48,19 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     /** 单例，供 MediaSessionListenerService 在启动后主动触发回调注册 */
     private static MusicService instance;
 
+    private MusicServiceCallback mMusicServiceCallback;
+
+    public interface MusicServiceCallback {
+        void onPackageChanged(String packageName);
+    }
+
+    public void setMusicServiceCallback(MusicServiceCallback callback) {
+        this.mMusicServiceCallback = callback;
+        if (callback != null && lastPackageName != null) {
+            callback.onPackageChanged(lastPackageName);
+        }
+    }
+
     public static MusicService getInstance() {
         return instance;
     }
@@ -89,6 +102,7 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     private String latestArtist = "默认歌手";
     private long latestDuration = 180000; // 默认3分钟
     private String latestAlbumArtUri = null;
+    private String lastPackageName = null;
     // 用于生成唯一的mediaId（默认值避免桌面读取时为 null）
     private String currentMediaId = "0";
 
@@ -325,6 +339,14 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         stateBuilder.setState(state.getState(), state.getPosition(), state.getPlaybackSpeed(), state.getLastPositionUpdateTime());
         mediaSession.setPlaybackState(stateBuilder.build());
         Log.d(TAG, "Sync playback state: state=" + state.getState() + ", pos=" + state.getPosition() + ", lastUpdateTime=" + state.getLastPositionUpdateTime());
+    }
+
+    @Override
+    public void onPackageChanged(String packageName) {
+        this.lastPackageName = packageName;
+        if (mMusicServiceCallback != null) {
+            mMusicServiceCallback.onPackageChanged(packageName);
+        }
     }
 
     @SuppressLint("ForegroundServiceType")

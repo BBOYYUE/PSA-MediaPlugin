@@ -3,16 +3,30 @@ package com.cusc.media;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cusc.media.base.player.MusicService;
+
 public class MainActivity extends Activity {
 
+    private static final String TAG = "MainActivity";
     private TextView permissionStatusText;
+    private TextView connectedAppText;
+
+    private final MusicService.MusicServiceCallback musicServiceCallback = new MusicService.MusicServiceCallback() {
+        @Override
+        public void onPackageChanged(String packageName) {
+            runOnUiThread(() -> updateConnectedApp(packageName));
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +44,7 @@ public class MainActivity extends Activity {
 
         LinearLayout permissionStatusLayout = findViewById(R.id.layout_permission_status);
         permissionStatusText = findViewById(R.id.text_permission_status);
+        connectedAppText = findViewById(R.id.text_connected_app);
 
         permissionStatusLayout.setOnClickListener(v -> {
             if (!isNotificationServiceEnabled()) {
@@ -42,6 +57,23 @@ public class MainActivity extends Activity {
     protected void onResume() {
         super.onResume();
         updatePermissionStatus();
+        
+        MusicService musicService = MusicService.getInstance();
+        if (musicService != null) {
+            musicService.setMusicServiceCallback(musicServiceCallback);
+        } else {
+            Log.w(TAG, "MusicService not running, cannot register callback");
+            connectedAppText.setText(R.string.none);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MusicService musicService = MusicService.getInstance();
+        if (musicService != null) {
+            musicService.setMusicServiceCallback(null);
+        }
     }
 
     private void updatePermissionStatus() {
@@ -51,6 +83,22 @@ public class MainActivity extends Activity {
         } else {
             permissionStatusText.setText(R.string.permission_status_not_granted);
             permissionStatusText.setTextColor(getResources().getColor(R.color.red, getTheme()));
+        }
+    }
+
+    private void updateConnectedApp(String packageName) {
+        if (packageName == null || packageName.isEmpty()) {
+            connectedAppText.setText(R.string.none);
+            return;
+        }
+
+        PackageManager pm = getPackageManager();
+        try {
+            ApplicationInfo ai = pm.getApplicationInfo(packageName, 0);
+            CharSequence label = pm.getApplicationLabel(ai);
+            connectedAppText.setText(label != null ? label.toString() : packageName);
+        } catch (PackageManager.NameNotFoundException e) {
+            connectedAppText.setText(packageName);
         }
     }
 

@@ -23,6 +23,7 @@ public class MediaSessionListenerService extends NotificationListenerService {
     private String lastArtist;
     private long lastDuration;
     private String lastAlbumArtUri;
+    private String lastPackageName;
 
     public static MediaSessionListenerService getInstance() {
         return instance;
@@ -30,9 +31,14 @@ public class MediaSessionListenerService extends NotificationListenerService {
 
     public void setMediaInfoCallback(MediaInfoCallback callback) {
         this.mediaInfoCallback = callback;
-        if (callback != null && lastTitle != null) {
-            callback.onMediaInfoUpdated(lastTitle, lastArtist, lastDuration, lastAlbumArtUri);
-            Log.d(TAG, "Cached media info pushed to new callback: " + lastTitle + " - " + lastArtist);
+        if (callback != null) {
+            if (lastTitle != null) {
+                callback.onMediaInfoUpdated(lastTitle, lastArtist, lastDuration, lastAlbumArtUri);
+                Log.d(TAG, "Cached media info pushed to new callback: " + lastTitle + " - " + lastArtist);
+            }
+            if (lastPackageName != null) {
+                callback.onPackageChanged(lastPackageName);
+            }
         }
     }
 
@@ -130,6 +136,10 @@ public class MediaSessionListenerService extends NotificationListenerService {
                 mMediaController.unregisterCallback(mControllerCallback);
                 mMediaController = null;
                 currentPlayingPackage = null;
+                lastPackageName = null;
+                if (mediaInfoCallback != null) {
+                    mediaInfoCallback.onPackageChanged(null);
+                }
                 Log.d(TAG, "Media session disconnected: " + sbn.getPackageName());
             }
         }
@@ -172,6 +182,10 @@ public class MediaSessionListenerService extends NotificationListenerService {
             mMediaController = new MediaController(this, token);
             mMediaController.registerCallback(mControllerCallback);
             currentPlayingPackage = sbn.getPackageName();
+            lastPackageName = currentPlayingPackage;
+            if (mediaInfoCallback != null) {
+                mediaInfoCallback.onPackageChanged(currentPlayingPackage);
+            }
             Log.d(TAG, "Connected to media session: " + currentPlayingPackage + (tokenChanged ? " (Token updated)" : ""));
 
             PlaybackState state = mMediaController.getPlaybackState();
