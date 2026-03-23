@@ -9,7 +9,6 @@ import java.util.List;
 
 public class QueueManager {
     private static final String TAG = "QueueManager";
-    private final List<MediaSessionCompat.QueueItem> mPlayingQueue = new ArrayList<>();
     private final MusicService mMusicService;
 
     private final MediaSessionCompat.QueueItem TEST_QUEUE_ITEM;
@@ -67,14 +66,9 @@ public class QueueManager {
     }
 
     private void setQueue(List<MediaSessionCompat.QueueItem> queueItems) {
-        synchronized (mPlayingQueue) {
-            mPlayingQueue.clear();
-            mPlayingQueue.addAll(queueItems);
-        }
-
         MediaSessionCompat mediaSession = mMusicService.getMediaSession();
         if (mediaSession != null) {
-            mediaSession.setQueue(mPlayingQueue);
+            mediaSession.setQueue(queueItems);
             Log.d(TAG, "Queue updated, current song count=" + queueItems.size());
         } else {
             Log.e(TAG, "setQueue: mediaSession is null, cannot update queue");
