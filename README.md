@@ -1,6 +1,6 @@
 # PSA Media Plugin (PSA 多媒体插件)
 
-![Gemini](https://img.shields.io/badge/AI%20Assisted-Gemini-blue?logo=googlegemini&logoColor=white)
+![Claude](https://img.shields.io/badge/AI%20Assisted-Claude-orange?logo=anthropic&logoColor=white)
 [![Android Build](https://github.com/ShaobaiLee/PSA-MediaPlugin/actions/workflows/android.yml/badge.svg)](https://github.com/ShaobaiLee/PSA-MediaPlugin/actions/workflows/android.yml)
 
 一个轻量级的多媒体插件，专为 Blue-i 3.0 车机系统设计。用于桥接第三方音乐 APP，使其能够通过系统的原厂桌面卡片进行显示与控制。
@@ -8,7 +8,7 @@
 ## ✨ 主要功能
 
 - **无缝集成**：替换默认的媒体服务，读取并显示第三方 APP 的媒体元数据。
-- **系统控制**：支持通过桌面组件控制播放/暂停、上一首和下一首。
+- **系统控制**：支持通过桌面组件直接控制播放/暂停、上一首和下一首，无需依赖第三方服务。
 - **自动同步**：自动同步当前媒体会话的播放进度、时长和状态。
 
 ## 📱 应用兼容性
@@ -37,7 +37,6 @@
 3. 打开 **多媒体插件** 应用。
 4. 授予 **通知访问权限**（这是获取歌名和封面的必要条件）。
 5. 插件将自动在后台运行。
-6. 桌面卡片控制播放需要借助 PSA 工具箱 4.16 及以上版本，请参考项目中 **AIDL** 文件。
 
 ## ⚠️ 恢复与卸载
 
