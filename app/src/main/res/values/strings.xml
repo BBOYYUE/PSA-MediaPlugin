@@ -3,7 +3,7 @@
     <string name="app_name">Media Plugin</string>
     <string name="title_media_plugin">多媒体插件</string>
     <string name="app_info_title">插件说明</string>
-    <string name="app_info">此插件用于实现Blue-i 3.0车机原厂桌面的音乐卡片支持显示和控制第三方音乐APP，安装插件后原多媒体将被覆盖，可点击下方按钮恢复</string>
+    <string name="app_info">安装后无需手动操作，用于PSA车机原厂桌面音乐卡片支持第三方音乐APP，原多媒体将被覆盖，可点击下方按钮恢复。</string>
     <string name="btn_restore">恢复多媒体</string>
     <string name="permission_status_label">通知读取权限</string>
     <string name="permission_status_granted">已获取</string>
