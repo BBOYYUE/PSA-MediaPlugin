@@ -28,6 +28,7 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     private MediaSessionCompat mediaSession;
     private PlaybackStateCompat.Builder stateBuilder;
     private QueueManager mQueueManager;
+    private AlbumArtServer mAlbumArtServer;
 
     /** 当前目标媒体 App 的 MediaController，由 MediaSessionListenerService 回调注入 */
     private MediaController mMediaController;
@@ -73,6 +74,10 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         super.onCreate();
         instance = this;
         Log.d(TAG, "onCreate");
+
+        // 初始化并启动 HTTP 服务
+        mAlbumArtServer = new AlbumArtServer(this);
+        mAlbumArtServer.start();
 
         // 步骤0：恢复上次播放的元数据
         restoreLastMediaInfo();
@@ -223,12 +228,15 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         boolean songChanged = !newMediaId.equals(currentMediaId);
         currentMediaId = newMediaId;
 
+        // 如果是 file:// URI，转换为 HTTP URL 供 Launcher 读取
+        String displayUri = AlbumArtServer.getHttpUrl(latestAlbumArtUri);
+
         // 创建媒体项并更新队列
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
                 .setMediaId(currentMediaId)
                 .setTitle(latestTitle)
                 .setSubtitle(latestArtist)
-                .setIconUri(latestAlbumArtUri != null ? android.net.Uri.parse(latestAlbumArtUri) : null)
+                .setIconUri(displayUri != null ? android.net.Uri.parse(displayUri) : null)
                 .build();
 
         MediaBrowserCompat.MediaItem mediaItem = new MediaBrowserCompat.MediaItem(
@@ -294,12 +302,14 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
                 .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, latestDuration);
 
         if (latestAlbumArtUri != null) {
-            metadataBuilder.putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, latestAlbumArtUri);
+            // 转换为 HTTP URL 供 Launcher 读取
+            String httpUrl = AlbumArtServer.getHttpUrl(latestAlbumArtUri);
+            metadataBuilder.putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, httpUrl);
         }
 
         MediaMetadataCompat metadata = metadataBuilder.build();
         mediaSession.setMetadata(metadata);
-        Log.d(TAG, "Update MediaSession metadata: " + latestTitle + "-" + latestArtist + ", album art: " + latestAlbumArtUri);
+        Log.d(TAG, "Update MediaSession metadata: " + latestTitle + "-" + latestArtist + ", album art: " + AlbumArtServer.getHttpUrl(latestAlbumArtUri));
     }
 
     @Override
@@ -323,6 +333,9 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if (mAlbumArtServer != null) {
+            mAlbumArtServer.stop();
+        }
         instance = null;
         mMediaController = null;
         MediaSessionListenerService listenerService = MediaSessionListenerService.getInstance();

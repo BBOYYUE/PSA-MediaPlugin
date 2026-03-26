@@ -2,6 +2,7 @@ package com.cusc.media.base.player;
 
 import android.app.Notification;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.media.MediaMetadata;
 import android.media.session.MediaController;
 import android.media.session.MediaSession;
@@ -10,6 +11,11 @@ import android.os.Bundle;
 import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Objects;
 
 public class MediaSessionListenerService extends NotificationListenerService {
     private static final String TAG = "MusicProgressListener";
@@ -83,12 +89,28 @@ public class MediaSessionListenerService extends NotificationListenerService {
     }
 
     // 专辑图片URI的获取和传递，并缓存供回调重连时使用
+    // 优先读取 ALBUM_ART_URI（QQ音乐等），URI 为空时回退到读取 Bitmap 并落盘（汽水音乐等）
     public void onMusicMetadataChanged(MediaMetadata metadata) {
         if (metadata != null) {
             long duration = metadata.getLong(MediaMetadata.METADATA_KEY_DURATION);
             String title = metadata.getString(MediaMetadata.METADATA_KEY_TITLE);
             String artist = metadata.getString(MediaMetadata.METADATA_KEY_ARTIST);
+
+            // 1. 优先读取 URI（QQ音乐、网易云等直接提供 URI 的播放器）
             String albumArtUri = metadata.getString(MediaMetadata.METADATA_KEY_ALBUM_ART_URI);
+
+            // 2. URI 为空时，回退到读取 Bitmap（汽水音乐等将封面直接嵌入 Bitmap 的播放器）
+            if (albumArtUri == null) {
+                Bitmap bitmap = metadata.getBitmap(MediaMetadata.METADATA_KEY_ALBUM_ART);
+                // 部分播放器使用 METADATA_KEY_ART 字段
+                if (bitmap == null) {
+                    bitmap = metadata.getBitmap(MediaMetadata.METADATA_KEY_ART);
+                }
+                if (bitmap != null) {
+                    Log.d(TAG, "[" + currentPlayingPackage + "] URI is null, falling back to Bitmap");
+                    albumArtUri = saveBitmapToCache(bitmap, title, artist);
+                }
+            }
 
             // 四个字段均与上次一致时，属于播放器重复推送，直接跳过
             boolean unchanged = duration == lastDuration
@@ -115,8 +137,36 @@ public class MediaSessionListenerService extends NotificationListenerService {
         }
     }
 
+    /**
+     * 将 Bitmap 保存到应用缓存目录，返回 file:// URI 字符串。
+     * 文件名由 title+artist 的哈希值决定，同一首歌不会重复写盘。
+     */
+    private String saveBitmapToCache(Bitmap bitmap, String title, String artist) {
+        try {
+            String safeTitle = (title != null) ? title : "";
+            String safeArtist = (artist != null) ? artist : "";
+            String fileName = "album_art_" + Math.abs((safeTitle + safeArtist).hashCode()) + ".jpg";
+            File cacheFile = new File(getCacheDir(), fileName);
+
+            // 文件已存在则直接复用，避免重复写盘
+            if (!cacheFile.exists()) {
+                try (FileOutputStream fos = new FileOutputStream(cacheFile)) {
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+                }
+                Log.d(TAG, "Album art saved to cache: " + cacheFile.getAbsolutePath());
+            } else {
+                Log.d(TAG, "Album art cache hit: " + cacheFile.getAbsolutePath());
+            }
+
+            return cacheFile.toURI().toString(); // "file:///data/data/.../cache/album_art_xxx.jpg"
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to save album art bitmap to cache", e);
+            return null;
+        }
+    }
+
     private static boolean equals(String a, String b) {
-        return a == null ? b == null : a.equals(b);
+        return Objects.equals(a, b);
     }
 
     private final MediaController.Callback mControllerCallback = new MediaController.Callback() {
