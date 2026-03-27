@@ -255,6 +255,11 @@ public class MediaSessionListenerService extends NotificationListenerService {
                 mediaInfoCallback.onPackageChanged(currentPlayingPackage);
             }
             Log.d(TAG, "Connected to media session: " + currentPlayingPackage + (tokenChanged ? " (Token updated)" : ""));
+
+            PlaybackState state = mMediaController.getPlaybackState();
+            MediaMetadata metadata = mMediaController.getMetadata();
+            if (state != null) onMusicStateChanged(state);
+            if (metadata != null) onMusicMetadataChanged(metadata);
         } catch (Exception e) {
             Log.e(TAG, "Error handling media notification", e);
         }
