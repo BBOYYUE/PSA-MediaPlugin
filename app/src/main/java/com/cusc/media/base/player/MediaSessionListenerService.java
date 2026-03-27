@@ -15,10 +15,13 @@ import android.util.Log;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Objects;
 
 public class MediaSessionListenerService extends NotificationListenerService {
     private static final String TAG = "MusicProgressListener";
+    private static final long MAX_CACHE_SIZE = 10 * 1024 * 1024; // 10MB
     private MediaController mMediaController;
     private String currentPlayingPackage;
     private static MediaSessionListenerService instance;
@@ -154,14 +157,46 @@ public class MediaSessionListenerService extends NotificationListenerService {
                     bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
                 }
                 Log.d(TAG, "Album art saved to cache: " + cacheFile.getAbsolutePath());
+                cleanupCache();
             } else {
                 Log.d(TAG, "Album art cache hit: " + cacheFile.getAbsolutePath());
+                // 更新访问时间，以便在清理时保留最近访问的文件
+                cacheFile.setLastModified(System.currentTimeMillis());
             }
 
             return cacheFile.toURI().toString(); // "file:///data/data/.../cache/album_art_xxx.jpg"
         } catch (IOException e) {
             Log.e(TAG, "Failed to save album art bitmap to cache", e);
             return null;
+        }
+    }
+
+    /**
+     * 清理缓存目录，确保总大小不超过 MAX_CACHE_SIZE (10MB)。
+     * 采用 LRU 策略，优先删除最久未使用的文件。
+     */
+    private void cleanupCache() {
+        File cacheDir = getCacheDir();
+        File[] files = cacheDir.listFiles((dir, name) -> name.startsWith("album_art_"));
+        if (files == null || files.length == 0) return;
+
+        long currentSize = 0;
+        for (File file : files) {
+            currentSize += file.length();
+        }
+
+        if (currentSize <= MAX_CACHE_SIZE) return;
+
+        // 按最后修改时间排序（从旧到新）
+        Arrays.sort(files, Comparator.comparingLong(File::lastModified));
+
+        for (File file : files) {
+            long fileSize = file.length();
+            if (file.delete()) {
+                currentSize -= fileSize;
+                Log.d(TAG, "Cache size limit exceeded, deleted: " + file.getName());
+            }
+            if (currentSize <= MAX_CACHE_SIZE) break;
         }
     }
 
