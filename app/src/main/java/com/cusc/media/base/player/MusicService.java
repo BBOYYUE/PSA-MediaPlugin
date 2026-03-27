@@ -229,7 +229,7 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         currentMediaId = newMediaId;
 
         // 如果是 file:// URI，转换为 HTTP URL 供 Launcher 读取
-        String displayUri = AlbumArtServer.getHttpUrl(latestAlbumArtUri);
+        String displayUri = mAlbumArtServer.getHttpUrl(latestAlbumArtUri);
 
         // 创建媒体项并更新队列
         MediaDescriptionCompat description = new MediaDescriptionCompat.Builder()
@@ -303,13 +303,13 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
 
         if (latestAlbumArtUri != null) {
             // 转换为 HTTP URL 供 Launcher 读取
-            String httpUrl = AlbumArtServer.getHttpUrl(latestAlbumArtUri);
+            String httpUrl = mAlbumArtServer.getHttpUrl(latestAlbumArtUri);
             metadataBuilder.putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, httpUrl);
         }
 
         MediaMetadataCompat metadata = metadataBuilder.build();
         mediaSession.setMetadata(metadata);
-        Log.d(TAG, "Update MediaSession metadata: " + latestTitle + "-" + latestArtist + ", album art: " + AlbumArtServer.getHttpUrl(latestAlbumArtUri));
+        Log.d(TAG, "Update MediaSession metadata: " + latestTitle + "-" + latestArtist + ", album art: " + mAlbumArtServer.getHttpUrl(latestAlbumArtUri));
     }
 
     @Override

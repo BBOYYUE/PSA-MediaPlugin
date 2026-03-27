@@ -15,10 +15,13 @@ import java.util.Scanner;
 
 public class AlbumArtServer {
     private static final String TAG = "AlbumArtServer";
-    private static final int PORT = 8080;
+    // 端口 0 让系统分配随机高端口，避免端口冲突
+    private static final int PORT_AUTO = 0;
     private ServerSocket serverSocket;
     private boolean isRunning = false;
     private final Context context;
+    // 实际绑定成功后的端口号，0 表示服务尚未启动
+    private volatile int actualPort = 0;
 
     public AlbumArtServer(Context context) {
         this.context = context;
@@ -29,8 +32,9 @@ public class AlbumArtServer {
         isRunning = true;
         new Thread(() -> {
             try {
-                serverSocket = new ServerSocket(PORT);
-                Log.d(TAG, "Server started on port " + PORT);
+                serverSocket = new ServerSocket(PORT_AUTO);
+                actualPort = serverSocket.getLocalPort();
+                Log.d(TAG, "Server started on port " + actualPort);
                 while (isRunning) {
                     try (Socket socket = serverSocket.accept()) {
                         handleRequest(socket);
@@ -48,6 +52,7 @@ public class AlbumArtServer {
 
     public void stop() {
         isRunning = false;
+        actualPort = 0;
         if (serverSocket != null) {
             try {
                 serverSocket.close();
@@ -104,13 +109,18 @@ public class AlbumArtServer {
         output.flush();
     }
 
-    public static String getHttpUrl(String fileUri) {
+    public String getHttpUrl(String fileUri) {
         if (fileUri == null || !fileUri.startsWith("file:")) return fileUri;
+        if (actualPort == 0) {
+            // 服务尚未完成绑定，回退原始 URI，避免生成无效 URL
+            Log.w(TAG, "getHttpUrl called before server is ready, returning original URI");
+            return fileUri;
+        }
         // Extract filename from file:/.../cache/filename.jpg
         int lastSlash = fileUri.lastIndexOf('/');
         if (lastSlash != -1) {
             String fileName = fileUri.substring(lastSlash + 1);
-            return "http://127.0.0.1:" + PORT + "/" + fileName;
+            return "http://127.0.0.1:" + actualPort + "/" + fileName;
         }
         return fileUri;
     }
