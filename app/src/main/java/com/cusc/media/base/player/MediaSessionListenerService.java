@@ -18,10 +18,15 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionException;
 
 public class MediaSessionListenerService extends NotificationListenerService {
     private static final String TAG = "MusicProgressListener";
     private static final long MAX_CACHE_SIZE = 10 * 1024 * 1024; // 10MB
+    private final ExecutorService ioExecutor = Executors.newSingleThreadExecutor();
+
     private MediaController mMediaController;
     private String currentPlayingPackage;
     private static MediaSessionListenerService instance;
@@ -77,8 +82,14 @@ public class MediaSessionListenerService extends NotificationListenerService {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
+        // 先清理回调和引用，再关闭线程池
+        if (mMediaController != null) {
+            mMediaController.unregisterCallback(mControllerCallback);
+            mMediaController = null;
+        }
+        ioExecutor.shutdown();
         instance = null;
+        super.onDestroy();
     }
 
     public void onMusicStateChanged(PlaybackState state) {
@@ -142,33 +153,42 @@ public class MediaSessionListenerService extends NotificationListenerService {
 
     /**
      * 将 Bitmap 保存到应用缓存目录，返回 file:// URI 字符串。
-     * 文件名由 title+artist 的哈希值决定，同一首歌不会重复写盘。
+     * 实际的写盘和清理操作在后台线程执行，避免阻塞主线程。
      */
     private String saveBitmapToCache(Bitmap bitmap, String title, String artist) {
-        try {
-            String safeTitle = (title != null) ? title : "";
-            String safeArtist = (artist != null) ? artist : "";
-            String fileName = "album_art_" + Math.abs((safeTitle + safeArtist).hashCode()) + ".jpg";
-            File cacheFile = new File(getCacheDir(), fileName);
+        String safeTitle = (title != null) ? title : "";
+        String safeArtist = (artist != null) ? artist : "";
+        String fileName = "album_art_" + Math.abs((safeTitle + safeArtist).hashCode()) + ".jpg";
+        File cacheFile = new File(getCacheDir(), fileName);
+        String uri = cacheFile.toURI().toString();
 
-            // 文件已存在则直接复用，避免重复写盘
-            if (!cacheFile.exists()) {
-                try (FileOutputStream fos = new FileOutputStream(cacheFile)) {
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
-                }
-                Log.d(TAG, "Album art saved to cache: " + cacheFile.getAbsolutePath());
-                cleanupCache();
-            } else {
-                Log.d(TAG, "Album art cache hit: " + cacheFile.getAbsolutePath());
-                // 更新访问时间，以便在清理时保留最近访问的文件
-                cacheFile.setLastModified(System.currentTimeMillis());
-            }
-
-            return cacheFile.toURI().toString(); // "file:///data/data/.../cache/album_art_xxx.jpg"
-        } catch (IOException e) {
-            Log.e(TAG, "Failed to save album art bitmap to cache", e);
-            return null;
+        if (ioExecutor.isShutdown()) {
+            return uri;
         }
+
+        try {
+            if (!cacheFile.exists()) {
+                // 复制一份 Bitmap 引用，确保在异步线程处理时安全
+                ioExecutor.execute(() -> {
+                    if (!cacheFile.exists()) {
+                        try (FileOutputStream fos = new FileOutputStream(cacheFile)) {
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+                            Log.d(TAG, "Album art saved to cache: " + cacheFile.getAbsolutePath());
+                            cleanupCache();
+                        } catch (IOException e) {
+                            Log.e(TAG, "Failed to save album art bitmap to cache", e);
+                        }
+                    }
+                });
+            } else {
+                // 已存在则仅更新访问时间
+                ioExecutor.execute(() -> cacheFile.setLastModified(System.currentTimeMillis()));
+            }
+        } catch (RejectedExecutionException e) {
+            Log.w(TAG, "Could not schedule cache task: executor is shut down");
+        }
+
+        return uri;
     }
 
     /**
