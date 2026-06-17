@@ -484,6 +484,10 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
             metadataBuilder.putString(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON_URI, displayIconUrl);
         }
 
+        // 给车机系统提供音频类型线索
+        metadataBuilder.putString("android.media.metadata.AUDIO_TYPE", "music");
+        metadataBuilder.putLong("android.media.metadata.CONTENT_TYPE", 2L); // CONTENT_TYPE_MUSIC = 2
+
         MediaMetadataCompat metadata = metadataBuilder.build();
         mediaSession.setMetadata(metadata);
         Log.d(TAG, "Update MediaSession metadata: " + latestTitle + "-" + latestArtist + ", album art: " + mAlbumArtServer.getHttpUrl(latestAlbumArtUri));
