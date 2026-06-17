@@ -52,9 +52,9 @@ public class MainActivity extends Activity {
             }
         });
 
-        // 启动即跳转 QQ音乐，延迟关闭留给启动时间
+        // 启动即跳转 QQ音乐，然后退到后台
         launchQQMusic();
-        new android.os.Handler().postDelayed(this::finish, 300);
+        moveTaskToBack(true);
         return;
     }
 
