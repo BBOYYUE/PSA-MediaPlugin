@@ -116,6 +116,10 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
                                 PlaybackStateCompat.ACTION_PLAY_FROM_MEDIA_ID
                 )
                 .setState(PlaybackStateCompat.STATE_STOPPED, 0, 1.0f);
+        // 尝试给语音助手提供 audioType 线索
+        Bundle hintExtras = new Bundle();
+        hintExtras.putString("audioType", "music");
+        stateBuilder.setExtras(hintExtras);
         mediaSession.setPlaybackState(stateBuilder.build());
 
         // 步骤3：初始化QueueManager
@@ -327,9 +331,9 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         // 使用带 updateTime 的 setState 方法，确保进度条同步准确
         // 同时拷贝原始 PlaybackState 的 extras，语音助手依赖其中的字段
         stateBuilder.setState(state.getState(), state.getPosition(), state.getPlaybackSpeed(), state.getLastPositionUpdateTime());
-        if (state.getExtras() != null) {
-            stateBuilder.setExtras(state.getExtras());
-        }
+        Bundle merged = state.getExtras() != null ? new Bundle(state.getExtras()) : new Bundle();
+        merged.putString("audioType", "music");
+        stateBuilder.setExtras(merged);
         mediaSession.setPlaybackState(stateBuilder.build());
         Log.d(TAG, "Sync playback state: state=" + state.getState() + ", pos=" + state.getPosition() + ", lastUpdateTime=" + state.getLastPositionUpdateTime());
     }
