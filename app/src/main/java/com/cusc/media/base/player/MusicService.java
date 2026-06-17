@@ -68,6 +68,8 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     private String lastPackageName = null;
     // 用于生成唯一的mediaId（默认值避免桌面读取时为 null）
     private String currentMediaId = "0";
+    // 缓存的 APP 显示图标 URL
+    private String displayIconUrl = null;
 
     private static final String PREFS_NAME = "MusicServicePrefs";
     private static final String PREF_KEY_TITLE = "last_title";
@@ -413,13 +415,9 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
             int port = mAlbumArtServer.getPort();
             if (port > 0) {
                 String iconUrl = "http://127.0.0.1:" + port + "/" + fileName;
-                // 更新 MediaSession metadata 中的显示图标
-                MediaMetadataCompat current = mediaSession.getController().getMetadata();
-                MediaMetadataCompat.Builder builder = current != null
-                        ? new MediaMetadataCompat.Builder(current)
-                        : new MediaMetadataCompat.Builder();
-                builder.putString(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON_URI, iconUrl);
-                mediaSession.setMetadata(builder.build());
+                displayIconUrl = iconUrl;
+                // 刷新 MediaSession metadata，让新图标生效
+                updateMediaMetadata();
                 Log.d(TAG, "Display icon updated to: " + iconUrl);
             }
         } catch (Exception e) {
@@ -447,9 +445,13 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
                 .putLong(MediaMetadataCompat.METADATA_KEY_DURATION, latestDuration);
 
         if (latestAlbumArtUri != null) {
-            // 转换为 HTTP URL 供 Launcher 读取
             String httpUrl = mAlbumArtServer.getHttpUrl(latestAlbumArtUri);
             metadataBuilder.putString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI, httpUrl);
+        }
+
+        // 设置 APP 显示图标（桌面卡片图标）
+        if (displayIconUrl != null) {
+            metadataBuilder.putString(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON_URI, displayIconUrl);
         }
 
         MediaMetadataCompat metadata = metadataBuilder.build();
