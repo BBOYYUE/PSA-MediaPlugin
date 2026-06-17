@@ -65,11 +65,14 @@ public class MainActivity extends Activity {
             if (intent != null) {
                 try {
                     startActivity(intent);
+                    Log.d(TAG, "Launched QQMusic: " + pkg);
                     return;
-                } catch (Exception ignored) {
+                } catch (Exception e) {
+                    Log.e(TAG, "Failed to launch " + pkg, e);
                 }
             }
         }
+        Log.w(TAG, "QQMusic not found, candidates checked");
     }
 
     @Override
