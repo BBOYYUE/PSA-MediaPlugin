@@ -14,14 +14,23 @@
         android:label="多媒体插件"
         tools:targetApi="31">
 
+        <!-- 透明跳板：桌面图标/卡片 → 直接跳 QQ音乐 -->
         <activity
-            android:name=".MainActivity"
+            android:name=".RedirectActivity"
             android:exported="true"
-            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar">
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:excludeFromRecents="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <!-- 设置页面：通过通知栏进入 -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar">
         </activity>
 
         <service

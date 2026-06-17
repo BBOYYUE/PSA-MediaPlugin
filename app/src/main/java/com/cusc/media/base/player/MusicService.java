@@ -2,6 +2,8 @@ package com.cusc.media.base.player;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -429,7 +431,29 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
 
     @SuppressLint("ForegroundServiceType")
     private void initNotification() {
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID).build();
+        // 创建通知渠道（Android O+）
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID, "多媒体插件", NotificationManager.IMPORTANCE_LOW);
+            NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            if (nm != null) nm.createNotificationChannel(channel);
+        }
+
+        // 点击通知 → 进入设置页面
+        Intent settingsIntent = new Intent(this, com.cusc.media.MainActivity.class);
+        int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            flags |= PendingIntent.FLAG_IMMUTABLE;
+        }
+        PendingIntent pi = PendingIntent.getActivity(this, 1, settingsIntent, flags);
+
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle("多媒体插件")
+                .setContentText("正在运行 — 点击进入设置")
+                .setSmallIcon(android.R.drawable.ic_media_play)
+                .setContentIntent(pi)
+                .setOngoing(true)
+                .build();
         startForeground(1, notification);
     }
 

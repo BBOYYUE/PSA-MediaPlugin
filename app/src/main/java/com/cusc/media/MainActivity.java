@@ -51,35 +51,13 @@ public class MainActivity extends Activity {
                 startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
             }
         });
-
-        // 启动即跳转 QQ音乐，然后退到后台
-        launchQQMusic();
-        moveTaskToBack(true);
-        return;
-    }
-
-    private void launchQQMusic() {
-        String[] candidates = {"com.tencent.qqmusiccar", "com.tencent.qqmusic"};
-        for (String pkg : candidates) {
-            Intent intent = getPackageManager().getLaunchIntentForPackage(pkg);
-            if (intent != null) {
-                try {
-                    startActivity(intent);
-                    Log.d(TAG, "Launched QQMusic: " + pkg);
-                    return;
-                } catch (Exception e) {
-                    Log.e(TAG, "Failed to launch " + pkg, e);
-                }
-            }
-        }
-        Log.w(TAG, "QQMusic not found, candidates checked");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         updatePermissionStatus();
-        
+
         MusicService musicService = MusicService.getInstance();
         if (musicService != null) {
             musicService.setMusicServiceCallback(musicServiceCallback);
