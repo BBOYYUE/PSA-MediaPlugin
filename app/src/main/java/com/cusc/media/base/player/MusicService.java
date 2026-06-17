@@ -325,8 +325,11 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         if (state == null) return;
         
         // 使用带 updateTime 的 setState 方法，确保进度条同步准确
-        // 直接透传原始 PlaybackState 的最后更新时间
+        // 同时拷贝原始 PlaybackState 的 extras，语音助手依赖其中的字段
         stateBuilder.setState(state.getState(), state.getPosition(), state.getPlaybackSpeed(), state.getLastPositionUpdateTime());
+        if (state.getExtras() != null) {
+            stateBuilder.setExtras(state.getExtras());
+        }
         mediaSession.setPlaybackState(stateBuilder.build());
         Log.d(TAG, "Sync playback state: state=" + state.getState() + ", pos=" + state.getPosition() + ", lastUpdateTime=" + state.getLastPositionUpdateTime());
     }
