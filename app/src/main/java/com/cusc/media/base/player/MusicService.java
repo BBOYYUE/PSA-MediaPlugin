@@ -512,6 +512,32 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     }
 
     @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        if (intent != null && Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction())) {
+            android.view.KeyEvent event = intent.getParcelableExtra(Intent.EXTRA_KEY_EVENT);
+            if (event != null && event.getAction() == android.view.KeyEvent.ACTION_DOWN) {
+                if (event.getKeyCode() == android.view.KeyEvent.KEYCODE_MEDIA_PAUSE
+                        || event.getKeyCode() == android.view.KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE) {
+                    Log.d(TAG, "MEDIA_BUTTON pause received");
+                    if (mMediaController != null) {
+                        android.media.session.PlaybackState state = mMediaController.getPlaybackState();
+                        if (state != null && state.getState() == PlaybackStateCompat.STATE_PLAYING) {
+                            mMediaController.getTransportControls().pause();
+                        } else {
+                            mMediaController.getTransportControls().play();
+                        }
+                    }
+                } else if (event.getKeyCode() == android.view.KeyEvent.KEYCODE_MEDIA_NEXT) {
+                    if (mMediaController != null) mMediaController.getTransportControls().skipToNext();
+                } else if (event.getKeyCode() == android.view.KeyEvent.KEYCODE_MEDIA_PREVIOUS) {
+                    if (mMediaController != null) mMediaController.getTransportControls().skipToPrevious();
+                }
+            }
+        }
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         if (mAlbumArtServer != null) {
