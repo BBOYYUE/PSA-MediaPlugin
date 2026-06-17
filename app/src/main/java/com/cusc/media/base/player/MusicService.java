@@ -109,7 +109,9 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
                                 PlaybackStateCompat.ACTION_PLAY_PAUSE |
                                 PlaybackStateCompat.ACTION_SEEK_TO |
                                 PlaybackStateCompat.ACTION_SKIP_TO_NEXT |
-                                PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS
+                                PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS |
+                                PlaybackStateCompat.ACTION_PLAY_FROM_SEARCH |
+                                PlaybackStateCompat.ACTION_PLAY_FROM_MEDIA_ID
                 )
                 .setState(PlaybackStateCompat.STATE_STOPPED, 0, 1.0f);
         mediaSession.setPlaybackState(stateBuilder.build());

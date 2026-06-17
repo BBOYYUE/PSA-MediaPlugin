@@ -51,6 +51,23 @@ public class MainActivity extends Activity {
                 startActivity(new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS"));
             }
         });
+
+        // 自动启动 QQ音乐 — 无论从桌面卡片还是桌面图标进入
+        launchQQMusic();
+    }
+
+    private void launchQQMusic() {
+        String[] candidates = {"com.tencent.qqmusiccar", "com.tencent.qqmusic"};
+        for (String pkg : candidates) {
+            Intent intent = getPackageManager().getLaunchIntentForPackage(pkg);
+            if (intent != null) {
+                try {
+                    startActivity(intent);
+                    return;
+                } catch (Exception ignored) {
+                }
+            }
+        }
     }
 
     @Override
