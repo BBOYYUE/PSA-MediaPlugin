@@ -52,8 +52,10 @@ public class MainActivity extends Activity {
             }
         });
 
-        // 自动启动 QQ音乐 — 无论从桌面卡片还是桌面图标进入
+        // 启动即跳转 QQ音乐
         launchQQMusic();
+        finish();
+        return;
     }
 
     private void launchQQMusic() {
