@@ -2,6 +2,7 @@ package com.cusc.media.base.player;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.media.session.MediaController;
 import android.os.Build;
@@ -280,6 +281,96 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     public void onMediaControllerChanged(MediaController controller) {
         mMediaController = controller;
         Log.d(TAG, "MediaController updated: " + (controller != null ? controller.getPackageName() : "null"));
+        // 动态更新 sessionActivity：点击桌面卡片时打开当前正在播放的 APP
+        updateSessionActivity(controller);
+    }
+
+    /**
+     * 设置 MediaSession 的 sessionActivity，使桌面卡片点击时启动当前音乐 APP。
+     * 若无活跃 APP，fallback 到 QQ音乐。
+     */
+    private void updateSessionActivity(MediaController controller) {
+        String targetPkg = null;
+        if (controller != null) {
+            targetPkg = controller.getPackageName();
+        }
+        // fallback：尝试 QQ音乐车机版 / 标准版
+        if (targetPkg == null) {
+            targetPkg = resolveFallbackMusicPackage();
+        }
+        if (targetPkg == null) return;
+
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage(targetPkg);
+        if (launchIntent == null) {
+            Log.w(TAG, "No launch intent for package: " + targetPkg);
+            return;
+        }
+
+        int flags = PendingIntent.FLAG_UPDATE_CURRENT;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            flags |= PendingIntent.FLAG_IMMUTABLE;
+        }
+        PendingIntent pi = PendingIntent.getActivity(this, 0, launchIntent, flags);
+        mediaSession.setSessionActivity(pi);
+        Log.d(TAG, "SessionActivity set to: " + targetPkg);
+    }
+
+    /**
+     * 按优先级寻找可用的音乐 APP 包名：QQ音乐车机版 → QQ音乐标准版 → null
+     */
+    private String resolveFallbackMusicPackage() {
+        String[] candidates = {
+                "com.tencent.qqmusiccar",  // QQ音乐车机版
+                "com.tencent.qqmusic",       // QQ音乐标准版（fallback）
+        };
+        for (String pkg : candidates) {
+            try {
+                getPackageManager().getPackageInfo(pkg, 0);
+                Log.d(TAG, "Fallback music package resolved: " + pkg);
+                return pkg;
+            } catch (Exception ignored) {
+            }
+        }
+        Log.w(TAG, "No fallback music package found");
+        return null;
+    }
+
+    /**
+     * 处理语音助理的搜索播放指令（如"播放周杰伦"）。
+     * 将搜索 query 转发给当前活跃的音乐 APP，或 fallback 启动 QQ音乐并传参。
+     */
+    @Override
+    public void onPlayFromSearch(String query, Bundle extras) {
+        Log.d(TAG, "onPlayFromSearch: query=" + query);
+        if (query == null || query.isEmpty()) return;
+
+        String targetPkg = null;
+        if (mMediaController != null) {
+            targetPkg = mMediaController.getPackageName();
+        }
+        if (targetPkg == null) {
+            targetPkg = resolveFallbackMusicPackage();
+        }
+        if (targetPkg == null) return;
+
+        // 方式一：MEDIA_PLAY_FROM_SEARCH — 标准媒体搜索 Intent
+        Intent searchIntent = new Intent("android.media.action.MEDIA_PLAY_FROM_SEARCH");
+        searchIntent.setPackage(targetPkg);
+        searchIntent.putExtra(android.app.SearchManager.QUERY, query);
+        searchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        // 尝试方式一，如果失败则用方式二（启动 APP 主界面）
+        try {
+            startActivity(searchIntent);
+            Log.d(TAG, "Forwarded search to " + targetPkg + ": " + query);
+        } catch (Exception e) {
+            Log.w(TAG, "MEDIA_PLAY_FROM_SEARCH not supported by " + targetPkg + ", launching app instead");
+            Intent launchIntent = getPackageManager().getLaunchIntentForPackage(targetPkg);
+            if (launchIntent != null) {
+                launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(launchIntent);
+            }
+        }
     }
 
     @SuppressLint("ForegroundServiceType")
