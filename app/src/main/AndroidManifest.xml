@@ -26,13 +26,6 @@
             </intent-filter>
         </activity>
 
-        <!-- 设置页面：通过通知栏进入 -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar">
-        </activity>
-
         <service
             android:name="com.cusc.media.base.player.MusicService"
             android:enabled="true"
