@@ -4,6 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.session.MediaController;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +23,8 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
 import android.content.Context;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 public class MusicService extends MediaBrowserServiceCompat implements MediaInfoCallback {
@@ -360,6 +366,9 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         PendingIntent pi = PendingIntent.getActivity(this, 0, launchIntent, flags);
         mediaSession.setSessionActivity(pi);
         Log.d(TAG, "SessionActivity set to: " + targetPkg);
+
+        // 同时更新 MediaSession 的显示图标为目标 APP 的图标
+        updateDisplayIcon(targetPkg);
     }
 
     /**
@@ -380,6 +389,42 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         }
         Log.w(TAG, "No fallback music package found");
         return null;
+    }
+
+    /**
+     * 提取目标 APP 的图标，保存到缓存并通过 HTTP 提供给 MediaSession，
+     * 使桌面卡片显示该 APP 的图标而非默认图标。
+     */
+    private void updateDisplayIcon(String packageName) {
+        try {
+            PackageManager pm = getPackageManager();
+            ApplicationInfo ai = pm.getApplicationInfo(packageName, 0);
+            BitmapDrawable drawable = (BitmapDrawable) pm.getApplicationIcon(ai);
+            Bitmap bitmap = drawable.getBitmap();
+
+            String fileName = "icon_" + packageName.replace('.', '_') + ".png";
+            File iconFile = new File(getCacheDir(), fileName);
+            if (!iconFile.exists()) {
+                FileOutputStream fos = new FileOutputStream(iconFile);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                fos.close();
+            }
+
+            int port = mAlbumArtServer.getPort();
+            if (port > 0) {
+                String iconUrl = "http://127.0.0.1:" + port + "/" + fileName;
+                // 更新 MediaSession metadata 中的显示图标
+                MediaMetadataCompat current = mediaSession.getController().getMetadata();
+                MediaMetadataCompat.Builder builder = current != null
+                        ? new MediaMetadataCompat.Builder(current)
+                        : new MediaMetadataCompat.Builder();
+                builder.putString(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON_URI, iconUrl);
+                mediaSession.setMetadata(builder.build());
+                Log.d(TAG, "Display icon updated to: " + iconUrl);
+            }
+        } catch (Exception e) {
+            Log.w(TAG, "Failed to update display icon for " + packageName, e);
+        }
     }
 
     @SuppressLint("ForegroundServiceType")

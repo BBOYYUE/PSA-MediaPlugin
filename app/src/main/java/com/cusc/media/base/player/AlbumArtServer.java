@@ -112,16 +112,18 @@ public class AlbumArtServer {
     public String getHttpUrl(String fileUri) {
         if (fileUri == null || !fileUri.startsWith("file:")) return fileUri;
         if (actualPort == 0) {
-            // 服务尚未完成绑定，回退原始 URI，避免生成无效 URL
             Log.w(TAG, "getHttpUrl called before server is ready, returning original URI");
             return fileUri;
         }
-        // Extract filename from file:/.../cache/filename.jpg
         int lastSlash = fileUri.lastIndexOf('/');
         if (lastSlash != -1) {
             String fileName = fileUri.substring(lastSlash + 1);
             return "http://127.0.0.1:" + actualPort + "/" + fileName;
         }
         return fileUri;
+    }
+
+    public int getPort() {
+        return actualPort;
     }
 }
