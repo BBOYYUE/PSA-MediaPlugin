@@ -152,6 +152,42 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
                     mMediaController.getTransportControls().skipToPrevious();
                 }
             }
+
+            /**
+             * 处理语音助理的搜索播放指令（如"播放周杰伦"）。
+             * 将搜索 query 转发给当前活跃的音乐 APP，或 fallback 启动 QQ音乐并传参。
+             */
+            @Override
+            public void onPlayFromSearch(String query, Bundle extras) {
+                Log.d(TAG, "onPlayFromSearch: query=" + query);
+                if (query == null || query.isEmpty()) return;
+
+                String targetPkg = null;
+                if (mMediaController != null) {
+                    targetPkg = mMediaController.getPackageName();
+                }
+                if (targetPkg == null) {
+                    targetPkg = resolveFallbackMusicPackage();
+                }
+                if (targetPkg == null) return;
+
+                Intent searchIntent = new Intent("android.media.action.MEDIA_PLAY_FROM_SEARCH");
+                searchIntent.setPackage(targetPkg);
+                searchIntent.putExtra(android.app.SearchManager.QUERY, query);
+                searchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                try {
+                    startActivity(searchIntent);
+                    Log.d(TAG, "Forwarded search to " + targetPkg + ": " + query);
+                } catch (Exception e) {
+                    Log.w(TAG, "MEDIA_PLAY_FROM_SEARCH not supported by " + targetPkg + ", launching app instead");
+                    Intent launchIntent = getPackageManager().getLaunchIntentForPackage(targetPkg);
+                    if (launchIntent != null) {
+                        launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(launchIntent);
+                    }
+                }
+            }
         });
 
         // 步骤5：注册MediaSessionListenerService的回调
@@ -333,44 +369,6 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         }
         Log.w(TAG, "No fallback music package found");
         return null;
-    }
-
-    /**
-     * 处理语音助理的搜索播放指令（如"播放周杰伦"）。
-     * 将搜索 query 转发给当前活跃的音乐 APP，或 fallback 启动 QQ音乐并传参。
-     */
-    @Override
-    public void onPlayFromSearch(String query, Bundle extras) {
-        Log.d(TAG, "onPlayFromSearch: query=" + query);
-        if (query == null || query.isEmpty()) return;
-
-        String targetPkg = null;
-        if (mMediaController != null) {
-            targetPkg = mMediaController.getPackageName();
-        }
-        if (targetPkg == null) {
-            targetPkg = resolveFallbackMusicPackage();
-        }
-        if (targetPkg == null) return;
-
-        // 方式一：MEDIA_PLAY_FROM_SEARCH — 标准媒体搜索 Intent
-        Intent searchIntent = new Intent("android.media.action.MEDIA_PLAY_FROM_SEARCH");
-        searchIntent.setPackage(targetPkg);
-        searchIntent.putExtra(android.app.SearchManager.QUERY, query);
-        searchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        // 尝试方式一，如果失败则用方式二（启动 APP 主界面）
-        try {
-            startActivity(searchIntent);
-            Log.d(TAG, "Forwarded search to " + targetPkg + ": " + query);
-        } catch (Exception e) {
-            Log.w(TAG, "MEDIA_PLAY_FROM_SEARCH not supported by " + targetPkg + ", launching app instead");
-            Intent launchIntent = getPackageManager().getLaunchIntentForPackage(targetPkg);
-            if (launchIntent != null) {
-                launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(launchIntent);
-            }
-        }
     }
 
     @SuppressLint("ForegroundServiceType")
