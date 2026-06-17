@@ -129,6 +129,9 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
                 Log.d(TAG, "onPlay");
                 if (mMediaController != null) {
                     mMediaController.getTransportControls().play();
+                } else {
+                    // 没有活跃 APP，尝试启动 QQ音乐
+                    launchMusicApp();
                 }
             }
 
@@ -395,6 +398,22 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         }
         Log.w(TAG, "No fallback music package found");
         return null;
+    }
+
+    /** 启动默认音乐 APP，供 onPlay / onPlayFromSearch fallback 使用 */
+    private void launchMusicApp() {
+        String targetPkg = resolveFallbackMusicPackage();
+        if (targetPkg == null) return;
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage(targetPkg);
+        if (launchIntent != null) {
+            launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            try {
+                startActivity(launchIntent);
+                Log.d(TAG, "Launched music app: " + targetPkg);
+            } catch (Exception e) {
+                Log.w(TAG, "Failed to launch " + targetPkg, e);
+            }
+        }
     }
 
     /**
