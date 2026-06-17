@@ -155,20 +155,28 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
 
             /**
              * 处理语音助理的搜索播放指令（如"播放周杰伦"）。
-             * 将搜索 query 转发给当前活跃的音乐 APP，或 fallback 启动 QQ音乐并传参。
+             * 优先通过 MediaController 转发给当前活跃的 APP，
+             * 若无活跃 APP 则用 Intent 启动 QQ音乐。
              */
             @Override
             public void onPlayFromSearch(String query, Bundle extras) {
                 Log.d(TAG, "onPlayFromSearch: query=" + query);
                 if (query == null || query.isEmpty()) return;
 
-                String targetPkg = null;
+                // 优先：通过 MediaController 的 TransportControls 转发给当前 APP
+                // 这比 Intent 更可靠，因为走的是 MediaSession 协议
                 if (mMediaController != null) {
-                    targetPkg = mMediaController.getPackageName();
+                    try {
+                        mMediaController.getTransportControls().playFromSearch(query, extras);
+                        Log.d(TAG, "Forwarded search via TransportControls: " + query);
+                        return;
+                    } catch (Exception e) {
+                        Log.w(TAG, "TransportControls.playFromSearch failed, fallback to Intent", e);
+                    }
                 }
-                if (targetPkg == null) {
-                    targetPkg = resolveFallbackMusicPackage();
-                }
+
+                // Fallback：没有活跃 APP，用 Intent 启动
+                String targetPkg = resolveFallbackMusicPackage();
                 if (targetPkg == null) return;
 
                 Intent searchIntent = new Intent("android.media.action.MEDIA_PLAY_FROM_SEARCH");
@@ -178,7 +186,7 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
 
                 try {
                     startActivity(searchIntent);
-                    Log.d(TAG, "Forwarded search to " + targetPkg + ": " + query);
+                    Log.d(TAG, "Launched search via Intent to " + targetPkg + ": " + query);
                 } catch (Exception e) {
                     Log.w(TAG, "MEDIA_PLAY_FROM_SEARCH not supported by " + targetPkg + ", launching app instead");
                     Intent launchIntent = getPackageManager().getLaunchIntentForPackage(targetPkg);
@@ -198,6 +206,9 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
 
         // 步骤7：前台通知
         initNotification();
+
+        // 步骤8：初始化 sessionActivity（fallback 到 QQ音乐），使桌面卡片点击可用
+        updateSessionActivity(mMediaController);
     }
 
     /**
