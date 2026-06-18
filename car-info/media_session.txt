@@ -1,0 +1,77 @@
+MEDIA SESSION SERVICE (dumpsys media_session)
+
+2 sessions listeners.
+Global priority session is com.android.server.telecom/HeadsetMediaButton (userId=0)
+  HeadsetMediaButton com.android.server.telecom/HeadsetMediaButton (userId=0)
+    ownerPid=1030, ownerUid=1000, userId=0
+    package=com.android.server.telecom
+    launchIntent=null
+    mediaButtonReceiver=null
+    active=false
+    flags=65537
+    rating type=0
+    controllers: 0
+    state=null
+    audioAttrs=AudioAttributes: usage=USAGE_VOICE_COMMUNICATION content=CONTENT_TYPE_SPEECH flags=0x0 tags= bundle=null
+    volumeType=1, controlType=2, max=0, current=0
+    metadata:size=0, description=null
+    queueTitle=null, size=0
+User Records:
+Record for full_user=0
+  Volume key long-press listener: null
+  Volume key long-press listener package: 
+  Media key listener: null
+  Media key listener package: 
+  Callback: android.media.session.ICallback$Stub$Proxy@180599b
+  Last MediaButtonReceiver: PendingIntent{e3a4fa3: PendingIntentRecord{716b02 com.tencent.qqmusiccar broadcastIntent}}
+  Restored MediaButtonReceiver: null
+  Media button session is com.tencent.qqmusiccar/QQMusicCar (userId=0)
+  Sessions Stack - have 3 sessions:
+    QQMusicCar com.tencent.qqmusiccar/QQMusicCar (userId=0)
+      ownerPid=4500, ownerUid=10066, userId=0
+      package=com.tencent.qqmusiccar
+      launchIntent=null
+      mediaButtonReceiver=PendingIntent{e3a4fa3: PendingIntentRecord{716b02 com.tencent.qqmusiccar broadcastIntent}}
+      active=true
+      flags=3
+      rating type=0
+      controllers: 4
+      state=PlaybackState {state=2, position=104920, buffered position=0, speed=1.0, updated=654813643, actions=2360311, custom actions=[], active item id=-1, error=null}
+      audioAttrs=AudioAttributes: usage=USAGE_MEDIA content=CONTENT_TYPE_UNKNOWN flags=0x0 tags= bundle=null
+      volumeType=1, controlType=2, max=0, current=0
+      metadata:size=11, description=All My People, Alexandra Stan, All My People
+      queueTitle=null, size=0
+
+    A2dpMediaBrowserService com.android.bluetooth/A2dpMediaBrowserService (userId=0)
+      ownerPid=5193, ownerUid=1002, userId=0
+      package=com.android.bluetooth
+      launchIntent=null
+      mediaButtonReceiver=null
+      active=true
+      flags=3
+      rating type=0
+      controllers: 0
+      state=null
+      audioAttrs=AudioAttributes: usage=USAGE_MEDIA content=CONTENT_TYPE_UNKNOWN flags=0x0 tags= bundle=null
+      volumeType=1, controlType=2, max=0, current=0
+      metadata:size=0, description=null
+      queueTitle=null, size=0
+
+    SimpleMusicService com.cusc.media/SimpleMusicService (userId=0)
+      ownerPid=17236, ownerUid=10048, userId=0
+      package=com.cusc.media
+      launchIntent=PendingIntent{d333319: PendingIntentRecord{8d4ce59 com.cusc.media startActivity}}
+      mediaButtonReceiver=null
+      active=false
+      flags=7
+      rating type=0
+      controllers: 2
+      state=PlaybackState {state=2, position=104920, buffered position=0, speed=1.0, updated=654813643, actions=3895, custom actions=[], active item id=-1, error=null}
+      audioAttrs=AudioAttributes: usage=USAGE_MEDIA content=CONTENT_TYPE_UNKNOWN flags=0x0 tags= bundle=null
+      volumeType=1, controlType=2, max=0, current=0
+      metadata:size=8, description=All My People, Alexandra Stan, null
+      queueTitle=null, size=2
+
+Audio playback (lastly played comes first)
+  uid=1000 packages=com.android.server.telecom com.ivi.uwrite com.autonavi.amapauto com.cusc.misc com.android.launcher com.cusc.app.btphone com.mediatek.nlpservice com.loostone.puremic com.android.providers.settings com.cusc.vehiclesettings com.cusc.mediascanservice com.chinatsp.remotecontrolservice com.cusc.service.groupoil com.baidu.carlifevehicle com.mediatek.thermalmanager com.mediatek.location.mtknlp com.android.car android com.android.location.fused com.chinatsp.update com.bandwa.openadb com.cusc.voicesettings com.cusc.voiceassistant com.android.systemui.plugin com.huawei.dmsdpdevice com.cusc.hvac com.cusc.appanel com.huawei.nearby com.android.inputdevices com.android.wallpaperbackup com.abfota.systemUpdate com.txz.connectswitch com.huawei.hicar.demoapp com.android.systemui com.cusc.execengine com.android.settings com.cusc.app.settings com.cusc.appstore com.mediatek.location.lppe.main com.psa.automatetest com.chinatsp.dtcservice 
+  uid=10066 packages=com.tencent.qqmusiccar

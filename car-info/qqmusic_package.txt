@@ -1,0 +1,673 @@
+Activity Resolver Table:
+  Full MIME Types:
+      application/x-ogg:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 5af6320
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "file"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 6a124d9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+      application/aac:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 5af6320
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "file"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 6a124d9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+      application/imy:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 5af6320
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "file"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 6a124d9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+      application/ogg:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 5af6320
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "file"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 6a124d9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+      audio/*:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 5af6320
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "file"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 6a124d9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+      application/itunes:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 5af6320
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "file"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 6a124d9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+
+  Base MIME Types:
+      application:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 5af6320
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "file"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 5af6320
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "file"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 5af6320
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "file"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 5af6320
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "file"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 5af6320
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "file"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 6a124d9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 6a124d9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 6a124d9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 6a124d9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 6a124d9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+
+  Wild MIME Types:
+      audio:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 5af6320
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "file"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 6a124d9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+
+  Schemes:
+      file:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 5af6320
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "file"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+      qqmusicactive:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 40e3f52
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "qqmusiccar"
+          Scheme: "qqmusicactive"
+      com.tencent.qqmusiccar.opisdk:
+        1c7b47c com.tencent.qqmusiccar/com.tencent.qqmusic.qplayer.logininfo.LoginHandlerActivity filter 4acfe9e
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "com.tencent.qqmusiccar.opisdk"
+          Authority: "login": -1
+      content:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 6a124d9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+      wedrive.qqmusic:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter cc82223
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "wedrive.qqmusic"
+      qqmusiccar:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 40e3f52
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "qqmusiccar"
+          Scheme: "qqmusicactive"
+
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        eedd105 com.tencent.qqmusiccar/.app.activity.AppStarterActivity filter 5b7ffb4
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+      com.tencent.qqmusiccar.action:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 878e7dd
+          Action: "com.tencent.qqmusiccar.action"
+          Category: "android.intent.category.DEFAULT"
+
+  MIME Typed Actions:
+      android.intent.action.VIEW:
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 5af6320
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "file"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+        88baf6f com.tencent.qqmusiccar/.app.activity.DispacherActivityForThird filter 6a124d9
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "content"
+          Type: "audio"
+          Type: "application/ogg"
+          Type: "application/x-ogg"
+          Type: "application/itunes"
+          Type: "application/aac"
+          Type: "application/imy"
+          mPriority=0, mOrder=0, mHasPartialTypes=true
+
+Receiver Resolver Table:
+  Schemes:
+      package:
+        fcfb55a com.tencent.qqmusiccar/.app.reciver.PackageReplacedReceiver filter 945c96d
+          Action: "android.intent.action.PACKAGE_REPLACED"
+          Scheme: "package"
+      wedrive.qqmusic:
+        24dd38b com.tencent.qqmusiccar/.app.reciver.BroadcastReceiverCenterForWeDrive filter aac2d84
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "wedrive.qqmusic"
+      qqmusiccar:
+        a199c68 com.tencent.qqmusiccar/.app.reciver.BroadcastReceiverCenterForThird filter 4a2ab31
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Scheme: "qqmusiccar"
+
+  Non-Data Actions:
+      android.intent.action.BATTERY_OKAY:
+        aff7881 com.tencent.qqmusiccar/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy filter 7f3dee
+          Action: "android.intent.action.BATTERY_OKAY"
+          Action: "android.intent.action.BATTERY_LOW"
+      android.intent.action.ACTION_POWER_DISCONNECTED:
+        a43cd26 com.tencent.qqmusiccar/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy filter 1828f69
+          Action: "android.intent.action.ACTION_POWER_CONNECTED"
+          Action: "android.intent.action.ACTION_POWER_DISCONNECTED"
+      androidx.profileinstaller.action.SAVE_PROFILE:
+        8c41d67 com.tencent.qqmusiccar/androidx.profileinstaller.ProfileInstallReceiver filter ced1cc6
+          Action: "androidx.profileinstaller.action.SAVE_PROFILE"
+      android.intent.action.DEVICE_STORAGE_LOW:
+        1201714 com.tencent.qqmusiccar/androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy filter f20128f
+          Action: "android.intent.action.DEVICE_STORAGE_LOW"
+          Action: "android.intent.action.DEVICE_STORAGE_OK"
+      android.net.conn.CONNECTIVITY_CHANGE:
+        f2a1bbd com.tencent.qqmusiccar/androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy filter fe9a91c
+          Action: "android.net.conn.CONNECTIVITY_CHANGE"
+      android.intent.action.DEVICE_STORAGE_OK:
+        1201714 com.tencent.qqmusiccar/androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy filter f20128f
+          Action: "android.intent.action.DEVICE_STORAGE_LOW"
+          Action: "android.intent.action.DEVICE_STORAGE_OK"
+      wns.push.to.com.tencent.qqmusiccar:
+        a8f95b2 com.tencent.qqmusiccar/.business.push.WnsPushReceiver filter e3a38b5
+          Action: "wns.push.to.com.tencent.qqmusiccar"
+      com.wedrive.action.QQMUSIC_COMMAND_SEND:
+        24dd38b com.tencent.qqmusiccar/.app.reciver.BroadcastReceiverCenterForWeDrive filter c91c797
+          Action: "com.wedrive.action.COMMAND_SEND"
+          Action: "com.wedrive.action.QQMUSIC_COMMAND_SEND"
+      com.tencent.qqmusiccar.action:
+        a199c68 com.tencent.qqmusiccar/.app.reciver.BroadcastReceiverCenterForThird filter 8342bd8
+          Action: "com.tencent.qqmusiccar.action"
+      com.tencent.qqmusiccar.ACTION_LOGIN_STATUS_CHANGED.QQMusicCar:
+        86b2903 com.tencent.qqmusiccar/.app.reciver.LoginBroadcastReceiver filter da14633
+          Action: "com.tencent.qqmusiccar.ACTION_LOGIN_STATUS_CHANGED.QQMusicCar"
+      wns.heartbeat:
+        7719080 com.tencent.qqmusiccar/com.tencent.base.os.clock.AlarmClockReceiver filter c643abb
+          Action: "wns.heartbeat"
+      androidx.profileinstaller.action.INSTALL_PROFILE:
+        8c41d67 com.tencent.qqmusiccar/androidx.profileinstaller.ProfileInstallReceiver filter e763b08
+          Action: "androidx.profileinstaller.action.INSTALL_PROFILE"
+      android.intent.action.BATTERY_LOW:
+        aff7881 com.tencent.qqmusiccar/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy filter 7f3dee
+          Action: "android.intent.action.BATTERY_OKAY"
+          Action: "android.intent.action.BATTERY_LOW"
+      android.intent.action.TIMEZONE_CHANGED:
+        861b6b9 com.tencent.qqmusiccar/androidx.work.impl.background.systemalarm.RescheduleReceiver filter fabb925
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "android.intent.action.TIME_SET"
+          Action: "android.intent.action.TIMEZONE_CHANGED"
+      android.intent.action.TIME_SET:
+        861b6b9 com.tencent.qqmusiccar/androidx.work.impl.background.systemalarm.RescheduleReceiver filter fabb925
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "android.intent.action.TIME_SET"
+          Action: "android.intent.action.TIMEZONE_CHANGED"
+      androidx.profileinstaller.action.SKIP_FILE:
+        8c41d67 com.tencent.qqmusiccar/androidx.profileinstaller.ProfileInstallReceiver filter e83c2a1
+          Action: "androidx.profileinstaller.action.SKIP_FILE"
+      androidx.profileinstaller.action.BENCHMARK_OPERATION:
+        8c41d67 com.tencent.qqmusiccar/androidx.profileinstaller.ProfileInstallReceiver filter 6ddc487
+          Action: "androidx.profileinstaller.action.BENCHMARK_OPERATION"
+      android.intent.action.BOOT_COMPLETED:
+        35d5afe com.tencent.qqmusiccar/.BootBroadcastReceiver filter d6429a2
+          Action: "android.intent.action.BOOT_COMPLETED"
+          mPriority=1000, mOrder=0, mHasPartialTypes=false
+        861b6b9 com.tencent.qqmusiccar/androidx.work.impl.background.systemalarm.RescheduleReceiver filter fabb925
+          Action: "android.intent.action.BOOT_COMPLETED"
+          Action: "android.intent.action.TIME_SET"
+          Action: "android.intent.action.TIMEZONE_CHANGED"
+      com.tencent.qqmusic.sword.INSTALL_CMD:
+        eed525f com.tencent.qqmusiccar/com.tencent.qqmusic.sword.InstallCmdReceiver filter f809df0
+          Action: "com.tencent.qqmusic.sword.INSTALL_CMD"
+          Action: "com.tencent.qqmusic.sword.CLEAN_AND_INSTALL_CMD"
+      android.intent.action.ACTION_POWER_CONNECTED:
+        a43cd26 com.tencent.qqmusiccar/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy filter 1828f69
+          Action: "android.intent.action.ACTION_POWER_CONNECTED"
+          Action: "android.intent.action.ACTION_POWER_DISCONNECTED"
+      com.roadrover.roados.action.qq_music_pause:
+        a199c68 com.tencent.qqmusiccar/.app.reciver.BroadcastReceiverCenterForThird filter 2520216
+          Action: "com.roadrover.roados.action.qq_music_pause"
+      android.appwidget.action.APPWIDGET_UPDATE:
+        e9f34ac com.tencent.qqmusiccar/.syswidget.WidgetProviderMiddle filter d0f7b4a
+          Action: "android.appwidget.action.APPWIDGET_UPDATE"
+      androidx.work.diagnostics.REQUEST_DIAGNOSTICS:
+        4de0575 com.tencent.qqmusiccar/androidx.work.impl.diagnostics.DiagnosticsReceiver filter 21548ab
+          Action: "androidx.work.diagnostics.REQUEST_DIAGNOSTICS"
+      com.wedrive.action.COMMAND_SEND:
+        24dd38b com.tencent.qqmusiccar/.app.reciver.BroadcastReceiverCenterForWeDrive filter c91c797
+          Action: "com.wedrive.action.COMMAND_SEND"
+          Action: "com.wedrive.action.QQMUSIC_COMMAND_SEND"
+      androidx.work.impl.background.systemalarm.UpdateProxies:
+        5b0290a com.tencent.qqmusiccar/androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver filter 6254afa
+          Action: "androidx.work.impl.background.systemalarm.UpdateProxies"
+      com.tencent.qqmusic.sword.CLEAN_AND_INSTALL_CMD:
+        eed525f com.tencent.qqmusiccar/com.tencent.qqmusic.sword.InstallCmdReceiver filter f809df0
+          Action: "com.tencent.qqmusic.sword.INSTALL_CMD"
+          Action: "com.tencent.qqmusic.sword.CLEAN_AND_INSTALL_CMD"
+
+Service Resolver Table:
+  Non-Data Actions:
+      com.tencent.qqmusiccar.third.api.QQMusicApiService:
+        3eb57b com.tencent.qqmusiccar/.third.api.QQMusicApiService filter 1e535f9
+          Action: "com.tencent.qqmusiccar.third.api.QQMusicApiService"
+      com.tencent.qqmusiccar.service.MainService:
+        e20ef98 com.tencent.qqmusiccar/.service.MainService filter ca0093e
+          Action: "com.tencent.qqmusiccar.service.MainService"
+          mPriority=999, mOrder=0, mHasPartialTypes=false
+      com.tencent.wns.service.WnsMain:
+        49683f1 com.tencent.qqmusiccar/com.tencent.wns.service.WnsMain filter c4b2cec
+          Action: "com.tencent.wns.service.WnsMain"
+      android.service.wallpaper.WallpaperService:
+        dafcbd6 com.tencent.qqmusiccar/com.tencent.qqmusic.openapisdk.playerui.view.wallpaper.QQWallPaperService filter 6e9039f permission android.permission.BIND_WALLPAPER
+          Action: "android.service.wallpaper.WallpaperService"
+
+Permissions:
+  Permission [com.tencent.qqmusiccar.WNS_PUSH_BROADCAST] (1792e57):
+    sourcePackage=com.tencent.qqmusiccar
+    uid=10066 gids=null type=0 prot=signature
+    perm=Permission{b016d44 com.tencent.qqmusiccar.WNS_PUSH_BROADCAST}
+    packageSetting=PackageSetting{57e6e2d com.tencent.qqmusiccar/10066}
+
+Permissions:
+  Permission [com.tencent.qqmusiccar.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION] (34cf62):
+    sourcePackage=com.tencent.qqmusiccar
+    uid=10066 gids=null type=0 prot=signature
+    perm=Permission{57858f3 com.tencent.qqmusiccar.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION}
+    packageSetting=PackageSetting{57e6e2d com.tencent.qqmusiccar/10066}
+
+Permissions:
+  Permission [com.tencent.qqmusiccar.matrix.permission.PROCESS_SUPERVISOR] (e4a19b0):
+    sourcePackage=com.tencent.qqmusiccar
+    uid=10066 gids=null type=0 prot=signature
+    perm=Permission{780c029 com.tencent.qqmusiccar.matrix.permission.PROCESS_SUPERVISOR}
+    packageSetting=PackageSetting{57e6e2d com.tencent.qqmusiccar/10066}
+
+Permissions:
+  Permission [com.tencent.qqmusiccar.common.provider] (5147fae):
+    sourcePackage=com.tencent.qqmusiccar
+    uid=10066 gids=null type=0 prot=normal
+    perm=Permission{735914f com.tencent.qqmusiccar.common.provider}
+    packageSetting=PackageSetting{57e6e2d com.tencent.qqmusiccar/10066}
+
+Registered ContentProviders:
+  com.tencent.qqmusiccar/androidx.startup.InitializationProvider:
+    Provider{62f20dc com.tencent.qqmusiccar/androidx.startup.InitializationProvider}
+  com.tencent.qqmusiccar/com.tme.fd_core.lifecycle.FdLifecycleProvider:
+    Provider{43c35e5 com.tencent.qqmusiccar/com.tme.fd_core.lifecycle.FdLifecycleProvider}
+  com.tencent.qqmusiccar/.business.provider.PlayProcessProvider:
+    Provider{a2ce8ba com.tencent.qqmusiccar/.business.provider.PlayProcessProvider}
+  com.tencent.qqmusiccar/.common.data.SearchProvider:
+    Provider{de3f36b com.tencent.qqmusiccar/.common.data.SearchProvider}
+  com.tencent.qqmusiccar/androidx.core.content.FileProvider:
+    Provider{dfb6ec8 com.tencent.qqmusiccar/androidx.core.content.FileProvider}
+  com.tencent.qqmusiccar/com.tme.fireeye.memory.lifecycle.MemoryLifecycleProvider:
+    Provider{67f4b61 com.tencent.qqmusiccar/com.tme.fireeye.memory.lifecycle.MemoryLifecycleProvider}
+
+ContentProvider Authorities:
+  [com.tencent.qqmusiccar.common.provider.PlayProcessProvider]:
+    Provider{a2ce8ba com.tencent.qqmusiccar/.business.provider.PlayProcessProvider}
+      applicationInfo=ApplicationInfo{b30d686 com.tencent.qqmusiccar}
+  [com.tencent.qqmusiccar.fireeye-memory-lifecycle]:
+    Provider{67f4b61 com.tencent.qqmusiccar/com.tme.fireeye.memory.lifecycle.MemoryLifecycleProvider}
+      applicationInfo=ApplicationInfo{b30d686 com.tencent.qqmusiccar}
+  [com.tencent.qqmusiccar.fd-lifecycle]:
+    Provider{43c35e5 com.tencent.qqmusiccar/com.tme.fd_core.lifecycle.FdLifecycleProvider}
+      applicationInfo=ApplicationInfo{b30d686 com.tencent.qqmusiccar}
+  [com.tencent.qqmusiccar.common.provider]:
+    Provider{de3f36b com.tencent.qqmusiccar/.common.data.SearchProvider}
+      applicationInfo=ApplicationInfo{b30d686 com.tencent.qqmusiccar}
+  [com.tencent.qqmusiccar.androidx-startup]:
+    Provider{62f20dc com.tencent.qqmusiccar/androidx.startup.InitializationProvider}
+      applicationInfo=ApplicationInfo{b30d686 com.tencent.qqmusiccar}
+  [com.tencent.qqmusiccar.provider]:
+    Provider{dfb6ec8 com.tencent.qqmusiccar/androidx.core.content.FileProvider}
+      applicationInfo=ApplicationInfo{b30d686 com.tencent.qqmusiccar}
+
+Key Set Manager:
+  [com.tencent.qqmusiccar]
+      Signing KeySets: 10
+
+Packages:
+  Package [com.tencent.qqmusiccar] (57e6e2d):
+    userId=10066
+    pkg=Package{6cc5b47 com.tencent.qqmusiccar}
+    codePath=/data/app/com.tencent.qqmusiccar-R89wA9ikp_HDuVw65qqLsQ==
+    resourcePath=/data/app/com.tencent.qqmusiccar-R89wA9ikp_HDuVw65qqLsQ==
+    legacyNativeLibraryDir=/data/app/com.tencent.qqmusiccar-R89wA9ikp_HDuVw65qqLsQ==/lib
+    primaryCpuAbi=arm64-v8a
+    secondaryCpuAbi=null
+    versionCode=3120003 minSdk=21 targetSdk=33
+    versionName=3.12.0.3
+    splits=[base]
+    apkSigningVersion=2
+    applicationInfo=ApplicationInfo{b30d686 com.tencent.qqmusiccar}
+    flags=[ HAS_CODE ALLOW_TASK_REPARENTING ALLOW_CLEAR_USER_DATA LARGE_HEAP ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE PARTIALLY_DIRECT_BOOT_AWARE ]
+    dataDir=/data/user/0/com.tencent.qqmusiccar
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    usesOptionalLibraries:
+      org.apache.http.legacy
+      androidx.window.extensions
+      androidx.window.sidecar
+    usesLibraryFiles:
+      /system/framework/org.apache.http.legacy.boot.jar
+    timeStamp=2026-06-12 18:03:39
+    firstInstallTime=2026-01-29 23:13:08
+    lastUpdateTime=2026-06-12 18:03:40
+    installerPackageName=com.android.packageinstaller
+    signatures=PackageSignatures{8bcaf74 version:2, signatures:[909ee988], past signatures:[]}
+    installPermissionsFixed=true
+    pkgFlags=[ HAS_CODE ALLOW_TASK_REPARENTING ALLOW_CLEAR_USER_DATA LARGE_HEAP ]
+    declared permissions:
+      com.tencent.qqmusiccar.common.provider: prot=normal, INSTALLED
+      com.tencent.qqmusiccar.WNS_PUSH_BROADCAST: prot=signature, INSTALLED
+      com.tencent.qqmusiccar.matrix.permission.PROCESS_SUPERVISOR: prot=signature, INSTALLED
+      com.tencent.qqmusiccar.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: prot=signature, INSTALLED
+    requested permissions:
+      android.car.permission.CAR_SPEED
+      android.permission.ACCESS_NETWORK_STATE
+      android.permission.INTERNET
+      android.permission.WAKE_LOCK
+      android.permission.ACCESS_WIFI_STATE
+      android.permission.READ_EXTERNAL_STORAGE
+      android.permission.WRITE_EXTERNAL_STORAGE
+      android.permission.REORDER_TASKS
+      android.permission.MODIFY_AUDIO_SETTINGS
+      com.tencent.qqmusiccar.common.provider
+      android.permission.RECORD_AUDIO
+      android.permission.SYSTEM_ALERT_WINDOW
+      android.permission.RECEIVE_BOOT_COMPLETED
+      android.permission.REQUEST_INSTALL_PACKAGES
+      android.permission.FOREGROUND_SERVICE
+      com.tencent.qqmusiccar.WNS_PUSH_BROADCAST
+      android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK
+      android.permission.BLUETOOTH
+      android.permission.BLUETOOTH_CONNECT
+      android.permission.BROADCAST_STICKY
+      android.permission.READ_MEDIA_AUDIO
+      android.permission.READ_MEDIA_VIDEO
+      android.permission.MANAGE_EXTERNAL_STORAGE
+      com.tencent.qqmusiccar.manual.dump
+      com.tencent.qqmusiccar.matrix.permission.PROCESS_SUPERVISOR
+      com.tencent.qqmusiccar.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+      jp.co.sony.threesixtyra.system.permission.OBTAIN_HRTF
+    install permissions:
+      android.permission.MODIFY_AUDIO_SETTINGS: granted=true
+      com.tencent.qqmusiccar.WNS_PUSH_BROADCAST: granted=true
+      com.tencent.qqmusiccar.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true
+      android.permission.FOREGROUND_SERVICE: granted=true
+      android.permission.RECEIVE_BOOT_COMPLETED: granted=true
+      android.permission.BLUETOOTH: granted=true
+      android.permission.INTERNET: granted=true
+      android.permission.REORDER_TASKS: granted=true
+      com.tencent.qqmusiccar.matrix.permission.PROCESS_SUPERVISOR: granted=true
+      com.tencent.qqmusiccar.common.provider: granted=true
+      android.permission.BROADCAST_STICKY: granted=true
+      android.permission.ACCESS_NETWORK_STATE: granted=true
+      android.permission.ACCESS_WIFI_STATE: granted=true
+      android.permission.WAKE_LOCK: granted=true
+    User 0: ceDataInode=132799 installed=true hidden=false suspended=false stopped=false notLaunched=false enabled=0 instant=false virtual=false
+      lastDisabledCaller: com.android.packageinstaller
+      gids=[3002, 3003]
+      runtime permissions:
+        android.permission.READ_EXTERNAL_STORAGE: granted=true
+        android.permission.WRITE_EXTERNAL_STORAGE: granted=true
+        android.permission.RECORD_AUDIO: granted=true
+      enabledComponents:
+        com.tencent.qqmusicsdk.player.listener.MediaButtonReceiver
+        androidx.work.impl.background.systemjob.SystemJobService
+
+Package Changes:
+  Sequence number=112
+  User 0:
+    seq=32, package=com.tencent.qqmusiccar
+    seq=77, package=com.bandwa.openadb
+    seq=91, package=com.android.settings
+    seq=96, package=com.cusc.service.groupoil
+    seq=111, package=com.cusc.media
+
+
+Dexopt state:
+  [com.tencent.qqmusiccar]
+    path: /data/app/com.tencent.qqmusiccar-R89wA9ikp_HDuVw65qqLsQ==/base.apk
+      arm64: [status=speed-profile] [reason=install]
+
+
+Compiler stats:
+  [com.tencent.qqmusiccar]
+     base.apk - 11664

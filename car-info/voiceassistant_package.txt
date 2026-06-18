@@ -1,0 +1,446 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        4de54c7 com.cusc.voiceassistant/.ui.OperationActivity filter 77fb829
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Receiver Resolver Table:
+  Non-Data Actions:
+      android.intent.action.BOOT_COMPLETED:
+        968eaf4 com.cusc.voiceassistant/.BootReceiver filter 389f1b0
+          Action: "android.intent.action.BOOT_COMPLETED"
+          mPriority=1000, mOrder=0, mHasPartialTypes=false
+
+Service Resolver Table:
+  Non-Data Actions:
+      com.cusc.voicesettings.ACTION_SHOW:
+        5fa921d com.cusc.voiceassistant/.SpeechService filter fde62d
+          Action: "com.cusc.voicesettings.ACTION_SHOW"
+      android.intent.action.CUSC_VISIBLE_SAY_SERVICE:
+        5fa921d com.cusc.voiceassistant/.SpeechService filter c0ae762
+          Action: "android.intent.action.CUSC_VISIBLE_SAY_SERVICE"
+      android.intent.action.CUSC_TTS_SERVICE:
+        5fa921d com.cusc.voiceassistant/.SpeechService filter 15de657
+          Action: "android.intent.action.CUSC_TTS_SERVICE"
+      android.intent.action.CUSC_VOICE_MANAGER_SERVICE:
+        5fa921d com.cusc.voiceassistant/.SpeechService filter f73c544
+          Action: "android.intent.action.CUSC_VOICE_MANAGER_SERVICE"
+      android.intent.action.CUSC_VOICEPRINT_MANAGER_SERVICE:
+        5fa921d com.cusc.voiceassistant/.SpeechService filter af090f3
+          Action: "android.intent.action.CUSC_VOICEPRINT_MANAGER_SERVICE"
+
+Key Set Manager:
+  [com.cusc.voiceassistant]
+      Signing KeySets: 1
+
+Packages:
+  Package [com.cusc.voiceassistant] (754d2f3):
+    userId=1000
+    sharedUser=SharedUserSetting{f8f558b android.uid.system/1000}
+    pkg=Package{3a33c92 com.cusc.voiceassistant}
+    codePath=/system/app/PSA_VoiceAssistant
+    resourcePath=/system/app/PSA_VoiceAssistant
+    legacyNativeLibraryDir=/system/app/PSA_VoiceAssistant/lib
+    primaryCpuAbi=arm64-v8a
+    secondaryCpuAbi=null
+    versionCode=1190 minSdk=23 targetSdk=27
+    versionName=v202403121802
+    splits=[base]
+    apkSigningVersion=3
+    applicationInfo=ApplicationInfo{3e17663 com.cusc.voiceassistant}
+    flags=[ SYSTEM HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ]
+    dataDir=/data/user/0/com.cusc.voiceassistant
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    usesLibraries:
+      org.apache.http.legacy
+    usesLibraryFiles:
+      /system/framework/org.apache.http.legacy.boot.jar
+    timeStamp=2009-01-01 00:00:00
+    firstInstallTime=2009-01-01 00:00:00
+    lastUpdateTime=2009-01-01 00:00:00
+    signatures=PackageSignatures{ca3c260 version:3, signatures:[b4addb29], past signatures:[]}
+    installPermissionsFixed=true
+    pkgFlags=[ SYSTEM HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    declared permissions:
+      android.car.permission.CAR_VENDOR_EXTENSION: prot=normal
+    requested permissions:
+      android.permission.INTERNET
+      android.permission.RECORD_AUDIO
+      android.permission.READ_PHONE_STATE
+      android.permission.READ_CONTACTS
+      android.permission.WRITE_EXTERNAL_STORAGE
+      android.permission.SYSTEM_ALERT_WINDOW
+      android.permission.SYSTEM_OVERLAY_WINDOW
+      android.permission.FOREGROUND_SERVICE
+      android.permission.RECEIVE_BOOT_COMPLETED
+      android.permission.ACCESS_NETWORK_STATE
+      android.permission.ACCESS_WIFI_STATE
+      android.permission.READ_LOGS
+      android.permission.INTERNAL_SYSTEM_WINDOW
+      android.permission.STATUS_BAR_SERVICE
+      android.permission.CHANGE_WIFI_STATE
+      android.permission.CHANGE_NETWORK_STATE
+      android.permission.INJECT_EVENTS
+      android.permission.BLUETOOTH
+      android.permission.BLUETOOTH_ADMIN
+      android.permission.KILL_BACKGROUND_PROCESSES
+      android.permission.FORCE_STOP_PACKAGES
+      android.car.permission.CAR_VENDOR_EXTENSION
+      android.permission.INTERACT_ACROSS_USERS
+      android.permission.CAMERA
+      android.permission.READ_EXTERNAL_STORAGE
+      android.car.permission.CONTROL_CAR_CLIMATE
+      android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+    install permissions:
+      android.permission.REAL_GET_TASKS: granted=true
+      android.permission.ACCESS_CACHE_FILESYSTEM: granted=true
+      android.permission.BIND_INCALL_SERVICE: granted=true
+      android.permission.WRITE_SETTINGS: granted=true
+      android.permission.CONFIGURE_WIFI_DISPLAY: granted=true
+      android.permission.CONFIGURE_DISPLAY_COLOR_MODE: granted=true
+      android.permission.ACCESS_WIMAX_STATE: granted=true
+      android.permission.RECOVERY: granted=true
+      com.bandwa.openadb.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true
+      android.permission.USE_CREDENTIALS: granted=true
+      android.permission.MODIFY_AUDIO_SETTINGS: granted=true
+      android.permission.ACCESS_CHECKIN_PROPERTIES: granted=true
+      android.permission.MODIFY_AUDIO_ROUTING: granted=true
+      android.permission.INSTALL_LOCATION_PROVIDER: granted=true
+      android.permission.USE_RESERVED_DISK: granted=true
+      com.autonavi.amapauto.permission.WRITE_CONTENTPROVIDER: granted=true
+      android.permission.SYSTEM_ALERT_WINDOW: granted=true
+      android.permission.BROADCAST_PHONE_ACCOUNT_REGISTRATION: granted=true
+      android.car.permission.CONTROL_CAR_CLIMATE: granted=true
+      android.permission.CONTROL_LOCATION_UPDATES: granted=true
+      android.car.permission.CAR_VENDOR_EXTENSION: granted=true
+      android.permission.CLEAR_APP_USER_DATA: granted=true
+      com.huawei.permission.NEARBY_OPERATOR_FUNCTION: granted=true
+      android.car.permission.CAR_EXTERIOR_ENVIRONMENT: granted=true
+      android.permission.BROADCAST_CALLLOG_INFO: granted=true
+      android.permission.INSTALL_PACKAGES: granted=true
+      android.permission.SHUTDOWN: granted=true
+      android.permission.NFC: granted=true
+      android.permission.INTERNAL_SYSTEM_WINDOW: granted=true
+      com.mediatek.permission.REQUEST_NLP_PACKAGE: granted=true
+      android.permission.NETWORK_SETTINGS: granted=true
+      android.permission.CALL_PRIVILEGED: granted=true
+      android.permission.CHANGE_NETWORK_STATE: granted=true
+      android.permission.MASTER_CLEAR: granted=true
+      android.permission.FOREGROUND_SERVICE: granted=true
+      android.permission.WRITE_SYNC_SETTINGS: granted=true
+      android.permission.RECEIVE_BOOT_COMPLETED: granted=true
+      android.permission.PEERS_MAC_ADDRESS: granted=true
+      android.permission.DEVICE_POWER: granted=true
+      android.permission.REMOVE_TASKS: granted=true
+      android.permission.READ_PRINT_SERVICES: granted=true
+      android.permission.MANAGE_PROFILE_AND_DEVICE_OWNERS: granted=true
+      android.car.permission.CAR_CONTROL_AUDIO_VOLUME: granted=true
+      android.permission.READ_PROFILE: granted=true
+      android.permission.BLUETOOTH: granted=true
+      com.android.alarm.permission.SET_ALARM: granted=true
+      android.permission.WRITE_MEDIA_STORAGE: granted=true
+      android.permission.WRITE_BLOCKED_NUMBERS: granted=true
+      android.permission.GET_TASKS: granted=true
+      android.permission.INTERNET: granted=true
+      android.permission.REORDER_TASKS: granted=true
+      android.permission.BLUETOOTH_ADMIN: granted=true
+      android.permission.CONTROL_VPN: granted=true
+      android.permission.MANAGE_FINGERPRINT: granted=true
+      android.permission.BIND_CONNECTION_SERVICE: granted=true
+      android.permission.ACCESS_INSTANT_APPS: granted=true
+      com.android.launcher.permission.WRITE_SETTINGS: granted=true
+      android.permission.MANAGE_USB: granted=true
+      android.permission.INTERACT_ACROSS_USERS_FULL: granted=true
+      android.permission.BIND_APPWIDGET: granted=true
+      android.permission.STOP_APP_SWITCHES: granted=true
+      android.permission.BATTERY_STATS: granted=true
+      android.permission.PACKAGE_USAGE_STATS: granted=true
+      android.permission.MOUNT_UNMOUNT_FILESYSTEMS: granted=true
+      android.permission.GET_ACCOUNTS_PRIVILEGED: granted=true
+      android.permission.TETHER_PRIVILEGED: granted=true
+      android.permission.WRITE_SECURE_SETTINGS: granted=true
+      android.permission.MOVE_PACKAGE: granted=true
+      android.permission.READ_BLOCKED_NUMBERS: granted=true
+      android.permission.STATUS_BAR_SERVICE: granted=true
+      android.permission.READ_SEARCH_INDEXABLES: granted=true
+      com.android.launcher.permission.READ_SETTINGS: granted=true
+      android.permission.ACCESS_LOCATION_EXTRA_COMMANDS: granted=true
+      android.permission.READ_PRIVILEGED_PHONE_STATE: granted=true
+      android.permission.TRIGGER_TIME_ZONE_RULES_CHECK: granted=true
+      android.permission.ACCESS_DOWNLOAD_MANAGER: granted=true
+      android.car.permission.CAR_IDENTIFICATION: granted=true
+      android.permission.BLUETOOTH_PRIVILEGED: granted=true
+      android.permission.NETWORK_STACK: granted=true
+      android.permission.HARDWARE_TEST: granted=true
+      android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME: granted=true
+      android.car.permission.CAR_POWERTRAIN: granted=true
+      android.intent.category.MASTER_CLEAR.permission.C2D_MESSAGE: granted=true
+      android.permission.BIND_JOB_SERVICE: granted=true
+      android.permission.CONFIRM_FULL_BACKUP: granted=true
+      android.permission.SET_TIME: granted=true
+      android.permission.WRITE_APN_SETTINGS: granted=true
+      android.permission.CHANGE_WIFI_STATE: granted=true
+      android.permission.MODIFY_DAY_NIGHT_MODE: granted=true
+      android.permission.MANAGE_USERS: granted=true
+      android.permission.DELETE_CACHE_FILES: granted=true
+      android.permission.ACCESS_NETWORK_STATE: granted=true
+      android.permission.DISABLE_KEYGUARD: granted=true
+      android.permission.BACKUP: granted=true
+      android.permission.CHANGE_CONFIGURATION: granted=true
+      android.permission.USER_ACTIVITY: granted=true
+      android.permission.LOCAL_MAC_ADDRESS: granted=true
+      android.permission.READ_LOGS: granted=true
+      android.permission.COPY_PROTECTED_DATA: granted=true
+      android.permission.INTERACT_ACROSS_USERS: granted=true
+      android.permission.SET_WALLPAPER: granted=true
+      android.permission.SET_KEYBOARD_LAYOUT: granted=true
+      android.permission.READ_DREAM_STATE: granted=true
+      android.permission.MANAGE_APP_OPS_RESTRICTIONS: granted=true
+      android.permission.KILL_BACKGROUND_PROCESSES: granted=true
+      android.permission.MANAGE_USER_OEM_UNLOCK_STATE: granted=true
+      android.permission.USE_FINGERPRINT: granted=true
+      android.permission.REQUEST_NETWORK_SCORES: granted=true
+      android.permission.WRITE_USER_DICTIONARY: granted=true
+      android.permission.READ_SYNC_STATS: granted=true
+      android.permission.WRITE_DREAM_STATE: granted=true
+      android.permission.REBOOT: granted=true
+      android.permission.REQUEST_DELETE_PACKAGES: granted=true
+      android.permission.OEM_UNLOCK_STATE: granted=true
+      android.permission.MANAGE_DEVICE_ADMINS: granted=true
+      android.permission.CHANGE_APP_IDLE_STATE: granted=true
+      android.permission.BIND_SETTINGS_SUGGESTIONS_SERVICE: granted=true
+      android.permission.TEST_BLACKLISTED_PASSWORD: granted=true
+      android.permission.GRANT_RUNTIME_PERMISSIONS: granted=true
+      android.permission.SET_POINTER_SPEED: granted=true
+      android.permission.MANAGE_NOTIFICATIONS: granted=true
+      android.permission.SEND_SHOW_SUSPENDED_APP_DETAILS: granted=true
+      android.permission.CONNECTIVITY_INTERNAL: granted=true
+      android.permission.SET_WALLPAPER_HINTS: granted=true
+      android.permission.MANAGE_MEDIA_PROJECTION: granted=true
+      android.permission.READ_SYNC_SETTINGS: granted=true
+      android.permission.OVERRIDE_WIFI_CONFIG: granted=true
+      android.permission.FORCE_STOP_PACKAGES: granted=true
+      android.permission.HIDE_NON_SYSTEM_OVERLAY_WINDOWS: granted=true
+      android.permission.CAPTURE_VIDEO_OUTPUT: granted=true
+      android.permission.ACCESS_NOTIFICATIONS: granted=true
+      android.permission.VIBRATE: granted=true
+      com.android.certinstaller.INSTALL_AS_USER: granted=true
+      android.permission.MANAGE_ACTIVITY_STACKS: granted=true
+      com.huawei.permission.HISIGHT_ACCESS: granted=true
+      android.permission.READ_USER_DICTIONARY: granted=true
+      android.permission.MANAGE_SCOPED_ACCESS_DIRECTORY_PERMISSIONS: granted=true
+      android.permission.ACCESS_WIFI_STATE: granted=true
+      com.huawei.hiviewlite.permission.USE_SERVICE: granted=true
+      android.permission.MANAGE_APP_OPS_MODES: granted=true
+      android.permission.CHANGE_WIMAX_STATE: granted=true
+      android.permission.REQUEST_INSTALL_PACKAGES: granted=true
+      android.permission.MODIFY_PHONE_STATE: granted=true
+      android.permission.STATUS_BAR: granted=true
+      android.permission.READ_FRAME_BUFFER: granted=true
+      android.permission.LOCATION_HARDWARE: granted=true
+      android.permission.WAKE_LOCK: granted=true
+      android.permission.INJECT_EVENTS: granted=true
+      android.permission.BIND_NETWORK_RECOMMENDATION_SERVICE: granted=true
+      android.car.permission.CAR_INFO: granted=true
+      android.permission.MEDIA_CONTENT_CONTROL: granted=true
+      android.permission.DELETE_PACKAGES: granted=true
+    User 0: ceDataInode=336 installed=true hidden=false suspended=false stopped=false notLaunched=false enabled=0 instant=false virtual=false
+
+Shared users:
+  SharedUser [android.uid.system] (f8f558b):
+    userId=1000
+    install permissions:
+      android.permission.REAL_GET_TASKS: granted=true
+      android.permission.ACCESS_CACHE_FILESYSTEM: granted=true
+      android.permission.BIND_INCALL_SERVICE: granted=true
+      android.permission.WRITE_SETTINGS: granted=true
+      android.permission.CONFIGURE_WIFI_DISPLAY: granted=true
+      android.permission.CONFIGURE_DISPLAY_COLOR_MODE: granted=true
+      android.permission.ACCESS_WIMAX_STATE: granted=true
+      android.permission.RECOVERY: granted=true
+      com.bandwa.openadb.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true
+      android.permission.USE_CREDENTIALS: granted=true
+      android.permission.MODIFY_AUDIO_SETTINGS: granted=true
+      android.permission.ACCESS_CHECKIN_PROPERTIES: granted=true
+      android.permission.MODIFY_AUDIO_ROUTING: granted=true
+      android.permission.INSTALL_LOCATION_PROVIDER: granted=true
+      android.permission.USE_RESERVED_DISK: granted=true
+      com.autonavi.amapauto.permission.WRITE_CONTENTPROVIDER: granted=true
+      android.permission.SYSTEM_ALERT_WINDOW: granted=true
+      android.permission.BROADCAST_PHONE_ACCOUNT_REGISTRATION: granted=true
+      android.car.permission.CONTROL_CAR_CLIMATE: granted=true
+      android.permission.CONTROL_LOCATION_UPDATES: granted=true
+      android.car.permission.CAR_VENDOR_EXTENSION: granted=true
+      android.permission.CLEAR_APP_USER_DATA: granted=true
+      com.huawei.permission.NEARBY_OPERATOR_FUNCTION: granted=true
+      android.car.permission.CAR_EXTERIOR_ENVIRONMENT: granted=true
+      android.permission.BROADCAST_CALLLOG_INFO: granted=true
+      android.permission.INSTALL_PACKAGES: granted=true
+      android.permission.SHUTDOWN: granted=true
+      android.permission.NFC: granted=true
+      android.permission.INTERNAL_SYSTEM_WINDOW: granted=true
+      com.mediatek.permission.REQUEST_NLP_PACKAGE: granted=true
+      android.permission.NETWORK_SETTINGS: granted=true
+      android.permission.CALL_PRIVILEGED: granted=true
+      android.permission.CHANGE_NETWORK_STATE: granted=true
+      android.permission.MASTER_CLEAR: granted=true
+      android.permission.FOREGROUND_SERVICE: granted=true
+      android.permission.WRITE_SYNC_SETTINGS: granted=true
+      android.permission.RECEIVE_BOOT_COMPLETED: granted=true
+      android.permission.PEERS_MAC_ADDRESS: granted=true
+      android.permission.DEVICE_POWER: granted=true
+      android.permission.REMOVE_TASKS: granted=true
+      android.permission.READ_PRINT_SERVICES: granted=true
+      android.permission.MANAGE_PROFILE_AND_DEVICE_OWNERS: granted=true
+      android.car.permission.CAR_CONTROL_AUDIO_VOLUME: granted=true
+      android.permission.READ_PROFILE: granted=true
+      android.permission.BLUETOOTH: granted=true
+      com.android.alarm.permission.SET_ALARM: granted=true
+      android.permission.WRITE_MEDIA_STORAGE: granted=true
+      android.permission.WRITE_BLOCKED_NUMBERS: granted=true
+      android.permission.GET_TASKS: granted=true
+      android.permission.INTERNET: granted=true
+      android.permission.REORDER_TASKS: granted=true
+      android.permission.BLUETOOTH_ADMIN: granted=true
+      android.permission.CONTROL_VPN: granted=true
+      android.permission.MANAGE_FINGERPRINT: granted=true
+      android.permission.BIND_CONNECTION_SERVICE: granted=true
+      android.permission.ACCESS_INSTANT_APPS: granted=true
+      com.android.launcher.permission.WRITE_SETTINGS: granted=true
+      android.permission.MANAGE_USB: granted=true
+      android.permission.INTERACT_ACROSS_USERS_FULL: granted=true
+      android.permission.BIND_APPWIDGET: granted=true
+      android.permission.STOP_APP_SWITCHES: granted=true
+      android.permission.BATTERY_STATS: granted=true
+      android.permission.PACKAGE_USAGE_STATS: granted=true
+      android.permission.MOUNT_UNMOUNT_FILESYSTEMS: granted=true
+      android.permission.GET_ACCOUNTS_PRIVILEGED: granted=true
+      android.permission.TETHER_PRIVILEGED: granted=true
+      android.permission.WRITE_SECURE_SETTINGS: granted=true
+      android.permission.MOVE_PACKAGE: granted=true
+      android.permission.READ_BLOCKED_NUMBERS: granted=true
+      android.permission.STATUS_BAR_SERVICE: granted=true
+      android.permission.READ_SEARCH_INDEXABLES: granted=true
+      com.android.launcher.permission.READ_SETTINGS: granted=true
+      android.permission.ACCESS_LOCATION_EXTRA_COMMANDS: granted=true
+      android.permission.READ_PRIVILEGED_PHONE_STATE: granted=true
+      android.permission.TRIGGER_TIME_ZONE_RULES_CHECK: granted=true
+      android.permission.ACCESS_DOWNLOAD_MANAGER: granted=true
+      android.car.permission.CAR_IDENTIFICATION: granted=true
+      android.permission.BLUETOOTH_PRIVILEGED: granted=true
+      android.permission.NETWORK_STACK: granted=true
+      android.permission.HARDWARE_TEST: granted=true
+      android.permission.SUBSTITUTE_NOTIFICATION_APP_NAME: granted=true
+      android.car.permission.CAR_POWERTRAIN: granted=true
+      android.intent.category.MASTER_CLEAR.permission.C2D_MESSAGE: granted=true
+      android.permission.BIND_JOB_SERVICE: granted=true
+      android.permission.CONFIRM_FULL_BACKUP: granted=true
+      android.permission.SET_TIME: granted=true
+      android.permission.WRITE_APN_SETTINGS: granted=true
+      android.permission.CHANGE_WIFI_STATE: granted=true
+      android.permission.MODIFY_DAY_NIGHT_MODE: granted=true
+      android.permission.MANAGE_USERS: granted=true
+      android.permission.DELETE_CACHE_FILES: granted=true
+      android.permission.ACCESS_NETWORK_STATE: granted=true
+      android.permission.DISABLE_KEYGUARD: granted=true
+      android.permission.BACKUP: granted=true
+      android.permission.CHANGE_CONFIGURATION: granted=true
+      android.permission.USER_ACTIVITY: granted=true
+      android.permission.LOCAL_MAC_ADDRESS: granted=true
+      android.permission.READ_LOGS: granted=true
+      android.permission.COPY_PROTECTED_DATA: granted=true
+      android.permission.INTERACT_ACROSS_USERS: granted=true
+      android.permission.SET_WALLPAPER: granted=true
+      android.permission.SET_KEYBOARD_LAYOUT: granted=true
+      android.permission.READ_DREAM_STATE: granted=true
+      android.permission.MANAGE_APP_OPS_RESTRICTIONS: granted=true
+      android.permission.KILL_BACKGROUND_PROCESSES: granted=true
+      android.permission.MANAGE_USER_OEM_UNLOCK_STATE: granted=true
+      android.permission.USE_FINGERPRINT: granted=true
+      android.permission.REQUEST_NETWORK_SCORES: granted=true
+      android.permission.WRITE_USER_DICTIONARY: granted=true
+      android.permission.READ_SYNC_STATS: granted=true
+      android.permission.WRITE_DREAM_STATE: granted=true
+      android.permission.REBOOT: granted=true
+      android.permission.REQUEST_DELETE_PACKAGES: granted=true
+      android.permission.OEM_UNLOCK_STATE: granted=true
+      android.permission.MANAGE_DEVICE_ADMINS: granted=true
+      android.permission.CHANGE_APP_IDLE_STATE: granted=true
+      android.permission.BIND_SETTINGS_SUGGESTIONS_SERVICE: granted=true
+      android.permission.TEST_BLACKLISTED_PASSWORD: granted=true
+      android.permission.GRANT_RUNTIME_PERMISSIONS: granted=true
+      android.permission.SET_POINTER_SPEED: granted=true
+      android.permission.MANAGE_NOTIFICATIONS: granted=true
+      android.permission.SEND_SHOW_SUSPENDED_APP_DETAILS: granted=true
+      android.permission.CONNECTIVITY_INTERNAL: granted=true
+      android.permission.SET_WALLPAPER_HINTS: granted=true
+      android.permission.MANAGE_MEDIA_PROJECTION: granted=true
+      android.permission.READ_SYNC_SETTINGS: granted=true
+      android.permission.OVERRIDE_WIFI_CONFIG: granted=true
+      android.permission.FORCE_STOP_PACKAGES: granted=true
+      android.permission.HIDE_NON_SYSTEM_OVERLAY_WINDOWS: granted=true
+      android.permission.CAPTURE_VIDEO_OUTPUT: granted=true
+      android.permission.ACCESS_NOTIFICATIONS: granted=true
+      android.permission.VIBRATE: granted=true
+      com.android.certinstaller.INSTALL_AS_USER: granted=true
+      android.permission.MANAGE_ACTIVITY_STACKS: granted=true
+      com.huawei.permission.HISIGHT_ACCESS: granted=true
+      android.permission.READ_USER_DICTIONARY: granted=true
+      android.permission.MANAGE_SCOPED_ACCESS_DIRECTORY_PERMISSIONS: granted=true
+      android.permission.ACCESS_WIFI_STATE: granted=true
+      com.huawei.hiviewlite.permission.USE_SERVICE: granted=true
+      android.permission.MANAGE_APP_OPS_MODES: granted=true
+      android.permission.CHANGE_WIMAX_STATE: granted=true
+      android.permission.REQUEST_INSTALL_PACKAGES: granted=true
+      android.permission.MODIFY_PHONE_STATE: granted=true
+      android.permission.STATUS_BAR: granted=true
+      android.permission.READ_FRAME_BUFFER: granted=true
+      android.permission.LOCATION_HARDWARE: granted=true
+      android.permission.WAKE_LOCK: granted=true
+      android.permission.INJECT_EVENTS: granted=true
+      android.permission.BIND_NETWORK_RECOMMENDATION_SERVICE: granted=true
+      android.car.permission.CAR_INFO: granted=true
+      android.permission.MEDIA_CONTENT_CONTROL: granted=true
+      android.permission.DELETE_PACKAGES: granted=true
+    User 0: 
+      gids=[2001, 1065, 3002, 1023, 3003, 3001, 1007]
+      runtime permissions:
+        android.permission.READ_SMS: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.READ_CALL_LOG: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.ACCESS_FINE_LOCATION: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.RECEIVE_WAP_PUSH: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.RECEIVE_SMS: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.READ_EXTERNAL_STORAGE: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.ACCESS_COARSE_LOCATION: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.READ_PHONE_STATE: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.CALL_PHONE: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.WRITE_CONTACTS: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.CAMERA: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.WRITE_CALL_LOG: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.PROCESS_OUTGOING_CALLS: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.GET_ACCOUNTS: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.WRITE_EXTERNAL_STORAGE: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.RECORD_AUDIO: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+        android.permission.READ_CONTACTS: granted=true, flags=[ SYSTEM_FIXED GRANTED_BY_DEFAULT ]
+
+Package Changes:
+  Sequence number=112
+  User 0:
+    seq=32, package=com.tencent.qqmusiccar
+    seq=77, package=com.bandwa.openadb
+    seq=91, package=com.android.settings
+    seq=96, package=com.cusc.service.groupoil
+    seq=111, package=com.cusc.media
+
+
+Dexopt state:
+  [com.cusc.voiceassistant]
+    path: /system/app/PSA_VoiceAssistant/PSA_VoiceAssistant.apk
+      arm64: [status=quicken] [reason=prebuilt]
+
+
+Compiler stats:
+  [com.cusc.voiceassistant]
+    (No recorded stats)

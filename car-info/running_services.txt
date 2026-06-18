@@ -1,0 +1,75 @@
+* ServiceRecord{fad9cd6 u0 com.mediatek.location.mtknlp/.NlpLocationService}
+    intent={act=com.android.location.service.v3.NetworkLocationProvider cmp=com.mediatek.location.mtknlp/.NlpLocationService}
+    packageName=com.mediatek.location.mtknlp
+    dataDir=/data/user/0/com.mediatek.location.mtknlp
+      intent={act=com.android.location.service.v3.NetworkLocationProvider cmp=com.mediatek.location.mtknlp/.NlpLocationService}
+          ConnectionRecord{594f8f1 u0 CR !FG !VIS com.mediatek.location.mtknlp/.NlpLocationService:@4ec1898}
+      intent={act=com.android.location.service.GeocodeProvider cmp=com.mediatek.location.mtknlp/.NlpLocationService}
+          ConnectionRecord{6f332d u0 CR !FG !VIS com.mediatek.location.mtknlp/.NlpLocationService:@dd62644}
+      ConnectionRecord{594f8f1 u0 CR !FG !VIS com.mediatek.location.mtknlp/.NlpLocationService:@4ec1898}
+      ConnectionRecord{6f332d u0 CR !FG !VIS com.mediatek.location.mtknlp/.NlpLocationService:@dd62644}
+  * ServiceRecord{1655549 u0 com.android.bluetooth/.a2dpsink.mbs.A2dpMediaBrowserService}
+    intent={cmp=com.android.bluetooth/.a2dpsink.mbs.A2dpMediaBrowserService}
+  * ServiceRecord{c6d48b2 u0 com.cusc.mediascanservice/.service.MediaScanService}
+    intent={cmp=com.cusc.mediascanservice/.service.MediaScanService}
+    packageName=com.cusc.mediascanservice
+    processName=com.cusc.mediascanservice
+    baseDir=/system/app/PSA_MediaScan/PSA_MediaScan.apk
+    dataDir=/data/user/0/com.cusc.mediascanservice
+    app=ProcessRecord{25a6003 29171:com.cusc.mediascanservice/1000}
+    isForeground=true foregroundId=1378277612 foregroundNoti=Notification(channel=MediaScanService pri=0 contentView=null vibrate=null sound=null defaults=0x0 flags=0x62 color=0xff607d8b vis=PRIVATE)
+      intent={cmp=com.cusc.mediascanservice/.service.MediaScanService}
+  * ServiceRecord{953408a u0 com.cusc.media/.base.player.MediaSessionListenerService}
+    intent={act=android.service.notification.NotificationListenerService cmp=com.cusc.media/.base.player.MediaSessionListenerService}
+    packageName=com.cusc.media
+    processName=com.cusc.media
+    baseDir=/data/app/com.cusc.media-fUWBw_oka-aKhlhZ_wBJLg==/base.apk
+    dataDir=/data/user/0/com.cusc.media
+    app=ProcessRecord{efbf249 17236:com.cusc.media/u0a48}
+      intent={act=android.service.notification.NotificationListenerService cmp=com.cusc.media/.base.player.MediaSessionListenerService}
+          ConnectionRecord{648caf5 u0 CR FGS com.cusc.media/.base.player.MediaSessionListenerService:@a8ba02c}
+      ConnectionRecord{648caf5 u0 CR FGS com.cusc.media/.base.player.MediaSessionListenerService:@a8ba02c}
+  * ServiceRecord{aeb6344 u0 com.mediatek.mtklogger/.framework.MTKLoggerService}
+    intent={cmp=com.mediatek.mtklogger/.framework.MTKLoggerService}
+    packageName=com.mediatek.mtklogger
+    processName=com.mediatek.mtklogger
+    dataDir=/data/user/0/com.mediatek.mtklogger
+    app=ProcessRecord{9102c2d 2683:com.mediatek.mtklogger/u0a53}
+    isForeground=true foregroundId=365001 foregroundNoti=Notification(channel=com.mediatek.mtklogger.notification pri=0 contentView=null vibrate=null sound=null defaults=0x0 flags=0x6a color=0x00000000 vis=PRIVATE)
+      intent={cmp=com.mediatek.mtklogger/.framework.MTKLoggerService}
+      * Client AppBindRecord{70cce99 ProcessRecord{9102c2d 2683:com.mediatek.mtklogger/u0a53}}
+          ConnectionRecord{8f3ad3 u0 CR com.mediatek.mtklogger/.framework.MTKLoggerService:@126b562}
+          ConnectionRecord{48b46f3 u0 CR com.mediatek.mtklogger/.framework.MTKLoggerService:@126b562}
+      ConnectionRecord{48b46f3 u0 CR com.mediatek.mtklogger/.framework.MTKLoggerService:@126b562}
+      ConnectionRecord{8f3ad3 u0 CR com.mediatek.mtklogger/.framework.MTKLoggerService:@126b562}
+  * ServiceRecord{bbc01f7 u0 com.cusc.media/.base.player.MusicService}
+    intent={cmp=com.cusc.media/.base.player.MusicService}
+    packageName=com.cusc.media
+    processName=com.cusc.media
+    baseDir=/data/app/com.cusc.media-fUWBw_oka-aKhlhZ_wBJLg==/base.apk
+    dataDir=/data/user/0/com.cusc.media
+    app=ProcessRecord{efbf249 17236:com.cusc.media/u0a48}
+      intent={act=android.media.browse.MediaBrowserService cmp=com.cusc.media/.base.player.MusicService}
+          ConnectionRecord{12cdb56 u0 CR com.cusc.media/.base.player.MusicService:@5a82171}
+          ConnectionRecord{2e89294 u0 CR com.cusc.media/.base.player.MusicService:@5bb56e7}
+      ConnectionRecord{12cdb56 u0 CR com.cusc.media/.base.player.MusicService:@5a82171}
+      ConnectionRecord{2e89294 u0 CR com.cusc.media/.base.player.MusicService:@5bb56e7}
+      * Client AppBindRecord{8ba23c5 ProcessRecord{25a6003 29171:com.cusc.mediascanservice/1000}}
+  * ConnectionRecord{48b46f3 u0 CR com.mediatek.mtklogger/.framework.MTKLoggerService:@126b562}
+    binding=AppBindRecord{70cce99 com.mediatek.mtklogger/.framework.MTKLoggerService:com.mediatek.mtklogger}
+  * ConnectionRecord{8f3ad3 u0 CR com.mediatek.mtklogger/.framework.MTKLoggerService:@126b562}
+    binding=AppBindRecord{70cce99 com.mediatek.mtklogger/.framework.MTKLoggerService:com.mediatek.mtklogger}
+  * ConnectionRecord{594f8f1 u0 CR !FG !VIS com.mediatek.location.mtknlp/.NlpLocationService:@4ec1898}
+    binding=AppBindRecord{cb0cb52 com.mediatek.location.mtknlp/.NlpLocationService:system}
+  * ConnectionRecord{12cdb56 u0 CR com.cusc.media/.base.player.MusicService:@5a82171}
+    binding=AppBindRecord{a58000d com.cusc.media/.base.player.MusicService:com.android.launcher}
+  * ConnectionRecord{2e89294 u0 CR com.cusc.media/.base.player.MusicService:@5bb56e7}
+    binding=AppBindRecord{e8a2bc2 com.cusc.media/.base.player.MusicService:com.cusc.execengine}
+  * ConnectionRecord{648caf5 u0 CR FGS com.cusc.media/.base.player.MediaSessionListenerService:@a8ba02c}
+    binding=AppBindRecord{2b9117c com.cusc.media/.base.player.MediaSessionListenerService:system}
+  * ConnectionRecord{6f332d u0 CR !FG !VIS com.mediatek.location.mtknlp/.NlpLocationService:@dd62644}
+    binding=AppBindRecord{c5e20d9 com.mediatek.location.mtknlp/.NlpLocationService:system}
+    binding=AppBindRecord{8ba23c5 com.cusc.misc/.MiscService:com.cusc.mediascanservice}
+  #12: com.cusc.media
+  #11: com.mediatek.mtklogger
+  #3: com.cusc.mediascanservice

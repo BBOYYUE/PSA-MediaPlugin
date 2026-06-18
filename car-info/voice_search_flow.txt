@@ -1,0 +1,80 @@
+06-17 22:10:01.638 27933 21911 I CuscAgent: startInteraction from:2, is open OneShot:true, interaction state:1
+06-17 22:10:01.638 27933 21911 D StateManager: dream mode:false
+06-17 22:10:01.647 27933 21911 I StateManager: acc off state: -1
+06-17 22:10:01.649 27933 21911 D StateManager: setInteractionState: 2
+06-17 22:10:01.649 27933 21911 I CuscAgent: stop speak start: callingpid=0
+06-17 22:10:01.649 27933 21911 I CuscAgent: stop speak end
+06-17 22:10:01.661 27933 21911 E CuscAgent: startAsr isWelcome:true has oneshotCache: false
+06-17 22:10:01.661 27933 21911 I CuscAgent: stop speak start: callingpid=27933
+06-17 22:10:01.661 27933 21911 I CuscAgent: stop speak end
+06-17 22:10:01.661 27933 21911 I AiSpeechTTSEngine: startSpeak  callingPid:27933  text:来喽
+06-17 22:10:01.662 27933 21911 I AiSpeechTTSEngine: is use online : true
+06-17 22:10:01.662 27933 21911 I AiSpeechTTSEngine: use online speaker... 
+06-17 22:10:01.662 27933 27963 D TaskQueue: set current speech item:true,834900b5-7120-4234-960c-7c5da404e9ea
+06-17 22:10:01.662 27933 27963 I CloudSynthesisSpeechItem: tts speak from cloud: 来喽
+06-17 22:10:01.664 27933 27946 D StateManager: GroupId:3 ChannelId:82 reply:{"stateType":6,"stateValue":1} noficationType:0
+06-17 22:10:01.668 27933 21911 E AICloudDMIntent:  drop invalid oneshot cache 
+06-17 22:10:01.668 27933 27991 I CloudDmFullDuplexProcessor: >>>>>>Event: MSG_START
+06-17 22:10:01.669 27933 21911 I CloudDmKernel: ---removeDuplicateCInfo() pendingUploadQueue size:0
+06-17 22:10:01.669 27933 27991 I CloudDmFullDuplexProcessor: [Current]:STATE_NEWED
+06-17 22:10:01.669 27933 27991 I CloudDmFullDuplexProcessor: sync recorderId : 6a32aab93327936d1d0000e6
+06-17 22:10:01.669 27933 27991 I CloudDmFullDuplexProcessor: sync sessionId : 0575c79422ca4a628bb67ac312da1fc3
+06-17 22:10:01.669 27933 27991 I CloudDmFullDuplexProcessor: VAD.TIMEOUT
+06-17 22:10:01.669 27933 27991 W CloudDmFullDuplexProcessor: start no Speech timeout task time is set to:5000
+06-17 22:10:01.669 27933 27991 I CloudDmFullDuplexProcessor: transfer:STATE_NEWED to:STATE_RUNNING
+06-17 22:10:01.669 27933 28030 D CloudDmFullDuplexProcessor: upstream begin .
+06-17 22:10:01.669 27933 28030 I CloudDmFullDuplexProcessor: isUseCustomFeed
+06-17 22:10:01.669 27933 21911 W CloudDmKernel: send text waiting connected...
+06-17 22:10:01.670 27933 28030 I CloudDmKernel: startKernel
+06-17 22:10:01.670 27933 27966 D CloudTtsProcessor: TTSParams = CloudTtsParams{speaker='qianranf', speed='1.0', volume='100', pitchChange='0', useSSML='1', refText='来喽', textType='text', enableRealTimeFeedback=true, userId='1001', audioPath='', server='https://tts.dui.ai/facade/runtime/v3/synthesize', productId='279605823', deviceName='LDC973B42S3020865', sdkName='DUI-lite-android-sdk-CAR_v1.4.9-51-g2d03166', cachePath='/storage/emulated/0/Android/data/com.cusc.voiceassistant/cache/ttsCache', streamType=0, requestId='null', audioType='mp3', mp3Quality='high', sampleRate=16000, channel=1, sampleBytes=2, url='null'}
+06-17 22:10:01.670 27933 28030 I CloudDM-VadKernel: startKernel
+06-17 22:10:01.670 27933 27992 D CloudDmKernel: start param: CloudSemanticParams{topic='recorder.stream.start', recordId='6a32aab93327936d1d0000e6', sessionId='0575c79422ca4a628bb67ac312da1fc3', wakeupWord='嘿，小狮子', audioType='ogg', sampleRate=com.aispeech.lite.AISampleRate@f03a30a, channel=1, sampleBytes=2, realBack=true, enablePunctuation=false, enableTone=false, customWakeupScore=0, enableConfidence=true, enableNumberConvert=false, phraseHints='null', enableNluCensor=false, enableNluNbese=false, skillId=null, task='null', aiType='DM'}
+06-17 22:10:01.670 27933 28031 D CloudDM-VadKernel: vad param: {"pauseTime":300}
+06-17 22:10:01.670 27933 28031 D CloudDM-VadKernel: SpeechParams:	{"pauseTime":300}
+06-17 22:10:01.670 27933 28031 D CloudDM-VadKernel: engine start before
+06-17 22:10:01.670 27933 28031 D CloudDM-VadKernel: engine start end
+06-17 22:10:01.670 27933 28031 D CloudDM-VadKernel: ret:0
+06-17 22:10:01.672 27933 27992 D CloudDmKernel: connect server url: wss://dds.dui.ai/dds/v3/prod?serviceType=websocket&productId=279605823&deviceName=LDC973B42S3020865&nonce=765758a7-ab0c-410c-a2e6-8a4f5cc30b52&sig=a9cee047b98e455110bfeb0ae873b6e8853f06bb&timestamp=1781705401670&communicationType=fullDuplex
+06-17 22:10:01.682 27933 27933 I StateManager: current top activity is: com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:10:01.682 27933 27933 D StateManager: isDisplayLauncherImage:: topClassName: com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:10:01.682 27933 27933 D StateManager: isDisplayLauncherImage:: isLauncherDisplay: false, isNotificationPanelOpen: false, isOccupySpace: false
+06-17 22:10:01.682 27933 27933 E SpeechWindow: startDialog: false
+06-17 22:10:01.683 27933 27933 I StateManager: current top activity is: com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:10:01.684 27933 27933 D StateManager: isDisplayLauncherImage:: topClassName: com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:10:01.684 27933 27933 D StateManager: isDisplayLauncherImage:: isLauncherDisplay: false, isNotificationPanelOpen: false, isOccupySpace: false
+06-17 22:10:01.684 27933 27933 D StateManager: getRealTopClass:: top package activity:com.tencent.qqmusiccar/com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:10:01.684 27933 27933 D StateManager: dream mode:false
+06-17 22:10:01.684 27933 27933 D StateManager: isStartShowImage:: isInScreenProjection: false, isNavShow: true
+06-17 22:10:01.684 27933 27933 E SpeechWindow: showInteractionNavigation: showImage: true mHolis: 2
+06-17 22:10:01.684 27933 27933 D SpeechWindow: updateSpeechKey.vis:0
+06-17 22:10:01.688 27933 27992 W CloudDmKernel: send text waiting connected...
+06-17 22:10:01.693 27933 27966 D com.aispeech.common.AIFileWriter: create FileWriter.
+06-17 22:10:01.696 27933 27933 D StateManager: exit launcher edit mode
+06-17 22:10:01.698 27933 27967 D CloudTtsKernel: mParams CloudTtsParams{speaker='qianranf', speed='1.0', volume='100', pitchChange='0', useSSML='1', refText='来喽', textType='text', enableRealTimeFeedback=true, userId='1001', audioPath='', server='https://tts.dui.ai/facade/runtime/v3/synthesize', productId='279605823', deviceName='LDC973B42S3020865', sdkName='DUI-lite-android-sdk-CAR_v1.4.9-51-g2d03166', cachePath='/storage/emulated/0/Android/data/com.cusc.voiceassistant/cache/ttsCache', streamType=0, requestId='null', audioType='mp3', mp3Quality='high', sampleRate=16000, channel=1, sampleBytes=2, url='null'}
+06-17 22:10:01.698 27933 27967 D CloudTTSHttpClient: CTTS.POST: {"context":{"productId":"279605823","userId":"1001","deviceName":"LDC973B42S3020865","sdkName":"DUI-lite-android-sdk-CAR_v1.4.9-51-g2d03166"},"request":{"requestId":"6a32aab93327936d1d0000e7","audio":{"audioType":"mp3","sampleRate":16000,"mp3Quality":"high","channel":1,"sampleBytes":2},"tts":{"useSSML":"1","text":"来喽","voiceId":"qianranf","textType":"text","enableRealTimeFeedback":true,"speed":"1.0","volume":"100","pitchChange":"0"}}}
+06-17 22:10:01.701 27933 27933 D BaseEngine: >>>>>>[Callback]:MSG_READY_FOR_SPEECH
+06-17 22:10:01.701 27933 27933 I CuscAgent: cloud dm ready for speech
+06-17 22:10:01.701 27933 27933 I CuscAgent: cloud dm is connect:false
+06-17 22:10:01.702 27933 27967 D HttpImpl: POST json https://tts.dui.ai/facade/runtime/v3/synthesize?productId=279605823&apikey=null&deviceName=LDC973B42S3020865&timestamp=1781705401698&nonce=9f8c1d15-d445-4a2c-acd8-3066dea400ee&sig=5745a4a31632226b253865ac3ce575baeeb828e7  {"context":{"productId":"279605823","userId":"1001","deviceName":"LDC973B42S3020865","sdkName":"DUI-lite-android-sdk-CAR_v1.4.9-51-g2d03166"},"request":{"requestId":"6a32aab93327936d1d0000e7","audio":{"audioType":"mp3","sampleRate":16000,"mp3Quality":"high","channel":1,"sampleBytes":2},"tts":{"useSSML":"1","text":"来喽","voiceId":"qianranf","textType":"text","enableRealTimeFeedback":true,"speed":"1.0","volume":"100","pitchChange":"0"}}}
+06-17 22:10:01.717 27933 27933 V ViewRootImpl[]: Measuring com.cusc.voiceassistant.component.uimode.LauncherConstraintLayout{52ca29 V.E...... ......ID 0,0-1920,720 #7f09007d app:id/cl_speech_dialog_container} in display 1920x720...
+06-17 22:10:01.732 27933 27933 V ViewRootImpl[]: Laying out com.cusc.voiceassistant.component.uimode.LauncherConstraintLayout{52ca29 V.E...... ......ID 0,0-1920,720 #7f09007d app:id/cl_speech_dialog_container} to (1920, 720)
+06-17 22:10:01.738 27933 27933 V ViewRootImpl[]: Draw com.cusc.voiceassistant.component.uimode.LauncherConstraintLayout{52ca29 V.E...... ......ID 0,0-1920,720 #7f09007d app:id/cl_speech_dialog_container}/: dirty={0,0,1920,720} surface=Surface(name=null)/@0x715886 surface.isValid()=true, appScale:1.0, width=1920, height=720
+06-17 22:10:02.078 27933 27966 I AiSpeechTTSEngine: tts emotion：中性,happy
+06-17 22:10:02.080 27933 27933 I AiSpeechTTSEngine: 在线播放开始834900b5-7120-4234-960c-7c5da404e9ea
+06-17 22:10:02.080 27933 27933 I CuscAgent: =======onPlayBegin=======834900b5-7120-4234-960c-7c5da404e9ea
+06-17 22:10:02.080 27933 27933 D StateManager: setInteractionState: 4
+06-17 22:10:02.081 27933 27933 D SpeechStateImageManager: set image state:54, image:1, isForceChange:false
+06-17 22:10:02.081 27933 27933 D SpeechStateImageManager: change image state isDayMode:false
+06-17 22:10:02.088 27933 27991 I CloudDmFullDuplexProcessor: >>>>>>Event: MSG_NLG_END
+06-17 22:10:02.088 27933 27991 I CloudDmFullDuplexProcessor: [Current]:STATE_RUNNING
+06-17 22:10:02.089 27933 27966 D com.aispeech.common.AIFileWriter: close File.
+06-17 22:10:02.097 27933 21914 I WebsocketClient: sendText {"recordId":"44aaf5b7920342a18bc4e7e6e6c948b5","topic":"system.settings","option":"delete","settings":[{"key":"excludeDispatchSkillList","value":["2019052300000366"]}]}
+06-17 22:10:02.097 27933 21914 I CloudDmKernel: startKernel
+06-17 22:10:02.097 27933 27992 D CloudDmKernel: start param: CloudSemanticParams{topic='recorder.stream.start', recordId='6a32aab93327936d1d0000e6', sessionId='0575c79422ca4a628bb67ac312da1fc3', wakeupWord='嘿，小狮子', audioType='ogg', sampleRate=com.aispeech.lite.AISampleRate@f03a30a, channel=1, sampleBytes=2, realBack=true, enablePunctuation=false, enableTone=false, customWakeupScore=0, enableConfidence=true, enableNumberConvert=false, phraseHints='null', enableNluCensor=false, enableNluNbese=false, skillId=null, task='null', aiType='DM'}
+06-17 22:10:02.098 27933 27992 D CloudDmKernel: request input : {"recordId":"6a32aab93327936d1d0000e6","sessionId":"0575c79422ca4a628bb67ac312da1fc3","wakeupWord":"嘿，小狮子","topic":"recorder.stream.start","audio":{"audioType":"ogg","sampleRate":16000,"channel":1,"sampleBytes":2},"asrParams":{"realBack":true,"enablePunctuation":false,"enableTone":false,"customWakeupScore":0,"enableConfidence":true,"enableNumberConvert":false,"enableRecUppercase":false,"enableAlignment":true,"enableEmotion":false,"enableAudioDetection":false,"res":"aicar"},"nluParams":{},"context":{"skill":{}}}
+06-17 22:10:02.098 27933 27992 I WebsocketClient: sendText {"recordId":"6a32aab93327936d1d0000e6","sessionId":"0575c79422ca4a628bb67ac312da1fc3","wakeupWord":"嘿，小狮子","topic":"recorder.stream.start","audio":{"audioType":"ogg","sampleRate":16000,"channel":1,"sampleBytes":2},"asrParams":{"realBack":true,"enablePunctuation":false,"enableTone":false,"customWakeupScore":0,"enableConfidence":true,"enableNumberConvert":false,"enableRecUppercase":false,"enableAlignment":true,"enableEmotion":false,"enableAudioDetection":false,"res":"aicar"},"nluParams":{},"context":{"skill":{}}}
+06-17 22:10:02.099 27933 27992 D CloudDmKernel: ASR.BEGIN
+06-17 22:10:02.108 27933 27933 I CuscAgent: cloud dm is connect:true
+06-17 22:10:02.108 27933 27933 I CuscAgent: is same to last uploaded location
+06-17 22:10:02.108 27933 27933 I CuscAgent: cloud dm is connect:true
+06-17 22:10:02.108 27933 27933 I CuscAgent: is same to last uploaded location

@@ -1,0 +1,98 @@
+--------- beginning of main
+--------- beginning of system
+06-17 22:00:33.445 27933 27946 I StateManager: dealMediaState: {"activeStatus":"bg","audioType":"","data":{"dataInfo":{"artist":"Alexandra Stan","song":"All My People"}},"sceneStatus":"paused"}
+06-17 22:00:33.462 27933 27946 I StateManager: dealMediaState: {"activeStatus":"bg","audioType":"","data":{"dataInfo":{"artist":"Alexandra Stan","song":"All My People"}},"sceneStatus":"paused"}
+06-17 22:00:33.464 27933 27946 I StateManager: dealMediaState: {"activeStatus":"bg","audioType":"","data":{"dataInfo":{"artist":"Alexandra Stan","song":"All My People"}},"sceneStatus":"paused"}
+06-17 22:00:33.469 27933 27946 I StateManager: dealMediaState: {"activeStatus":"bg","audioType":"","data":{"dataInfo":{"artist":"Alexandra Stan","song":"All My People"}},"sceneStatus":"paused"}
+06-17 22:00:33.525 27933 14632 I CuscAgent: startInteraction from:2, is open OneShot:true, interaction state:1
+06-17 22:00:33.529 27933 14632 I StateManager: acc off state: -1
+06-17 22:00:33.533 27933 14632 I CuscAgent: stop speak start: callingpid=0
+06-17 22:00:33.533 27933 14632 I CuscAgent: stop speak end
+06-17 22:00:33.541 27933 14632 E CuscAgent: startAsr isWelcome:true has oneshotCache: false
+06-17 22:00:33.541 27933 14632 I CuscAgent: stop speak start: callingpid=27933
+06-17 22:00:33.541 27933 14632 I CuscAgent: stop speak end
+06-17 22:00:33.544 27933 27933 I StateManager: current top activity is: com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:00:33.545 27933 27933 I StateManager: current top activity is: com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:00:33.585 27933 27933 I CuscAgent: cloud dm ready for speech
+06-17 22:00:33.585 27933 27933 I CuscAgent: cloud dm is connect:false
+06-17 22:00:33.920 27933 27933 I CuscAgent: =======onPlayBegin=======f942e179-d5ea-4ab5-9c70-29f54e1cb5a0
+06-17 22:00:34.105 27933 27933 I CuscAgent: cloud dm is connect:true
+06-17 22:00:34.105 27933 27933 I CuscAgent: is same to last uploaded location
+06-17 22:00:34.106 27933 27933 I CuscAgent: cloud dm is connect:true
+06-17 22:00:34.106 27933 27933 I CuscAgent: is same to last uploaded location
+06-17 22:00:34.165 27933 27933 I CuscAgent: delete exclude success
+06-17 22:00:34.204 27933 27933 I CuscAgent: delete exclude success
+06-17 22:00:34.791 27933 27933 I CuscAgent: =======onPlayCompleted=======f942e179-d5ea-4ab5-9c70-29f54e1cb5a0
+06-17 22:00:35.473 27933 27933 I CuscAgent: cloud dm beginning of speech
+06-17 22:00:35.474 27933 27933 I CuscAgent: cloud dm is connect:true
+06-17 22:00:35.474 27933 27933 I CuscAgent: is same to last uploaded location
+06-17 22:00:36.570 27933 27933 I CuscAgent: is effective cmd:3
+06-17 22:00:36.571 27933 27933 I CuscAgent: reject:["ZH2019110100000103","2018050400000027"]
+06-17 22:00:36.572 27933 27933 I CuscAgent: is give up dm result:0
+06-17 22:00:36.572 27933 27933 I CuscAgent: hotword type : -1   input:暂停
+06-17 22:00:36.576 27933  7038 I StateManager: musicControlPause: focus: , media pkg: com.cusc.media, MVForeground: false, audio type: media state:none
+06-17 22:00:36.576 27933  7038 I CuscAgent: is need sr:false
+06-17 22:00:36.577 27933  7038 I CuscAgent: stop speak start: callingpid=27933
+06-17 22:00:36.577 27933  7038 I CuscAgent: stop speak end
+06-17 22:00:36.639 27933 27933 I CuscAgent: set reject success
+06-17 22:00:36.719 27933 27933 I CuscAgent: =======onPlayBegin=======93372dd6-b960-4c77-8a42-52daff5f5e9c
+06-17 22:00:38.994 27933 27933 I CuscAgent: =======onPlayCompleted=======93372dd6-b960-4c77-8a42-52daff5f5e9c
+06-17 22:00:39.001 27933 27933 W CuscAgent: onPostExecute: 0
+06-17 22:00:57.893 27933 14956 I CuscAgent: startInteraction from:2, is open OneShot:true, interaction state:5
+06-17 22:00:57.893 27933 14956 I CuscAgent: strongStopInteraction
+06-17 22:00:57.895 27933 14956 I CuscAgent: reject:[]
+06-17 22:00:57.905 27933 27933 I CuscAgent: stop speak start: callingpid=27933
+06-17 22:00:57.905 27933 27933 I CuscAgent: stop speak end
+06-17 22:00:57.905 27933 27933 I CuscAgent: cloud dm is connect:false
+06-17 22:00:57.931 27933 27933 I StateManager: current top activity is: com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:00:57.942 27933 27933 I StateManager: current top activity is: com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:00:57.943 27933 27933 I StateManager: current top activity is: com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:00:57.944 27933 27933 I StateManager: activity change  launcher false isPanelOpened : false isOccupySpace: false  isLauncherShowing: false
+06-17 22:04:05.726 27933 17331 I CuscAgent: startInteraction from:2, is open OneShot:true, interaction state:1
+06-17 22:04:05.730 27933 17331 I StateManager: acc off state: -1
+06-17 22:04:05.735 27933 17331 I CuscAgent: stop speak start: callingpid=0
+06-17 22:04:05.735 27933 17331 I CuscAgent: stop speak end
+06-17 22:04:05.750 27933 17331 E CuscAgent: startAsr isWelcome:true has oneshotCache: false
+06-17 22:04:05.750 27933 17331 I CuscAgent: stop speak start: callingpid=27933
+06-17 22:04:05.750 27933 17331 I CuscAgent: stop speak end
+06-17 22:04:05.774 27933 27933 I StateManager: current top activity is: com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:04:05.777 27933 27933 I StateManager: current top activity is: com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:04:05.789 27933 27933 I CuscAgent: cloud dm ready for speech
+06-17 22:04:05.789 27933 27933 I CuscAgent: cloud dm is connect:false
+06-17 22:04:06.145 27933 27933 I CuscAgent: =======onPlayBegin=======4056ce68-6172-4c8d-bff4-63f1751687c5
+06-17 22:04:06.243 27933 27933 I CuscAgent: cloud dm is connect:true
+06-17 22:04:06.243 27933 27933 I CuscAgent: is same to last uploaded location
+06-17 22:04:06.243 27933 27933 I CuscAgent: cloud dm is connect:true
+06-17 22:04:06.243 27933 27933 I CuscAgent: is same to last uploaded location
+06-17 22:04:06.308 27933 27933 I CuscAgent: delete exclude success
+06-17 22:04:06.789 27933 27933 I CuscAgent: =======onPlayCompleted=======4056ce68-6172-4c8d-bff4-63f1751687c5
+06-17 22:04:07.518 27933 27933 I CuscAgent: cloud dm beginning of speech
+06-17 22:04:07.518 27933 27933 I CuscAgent: cloud dm is connect:true
+06-17 22:04:07.518 27933 27933 I CuscAgent: is same to last uploaded location
+06-17 22:04:08.601 27933 27933 I CuscAgent: is effective cmd:3
+06-17 22:04:08.601 27933 27933 I CuscAgent: reject:["ZH2019110100000103","2018050400000027"]
+06-17 22:04:08.603 27933 27933 I CuscAgent: is give up dm result:0
+06-17 22:04:08.603 27933 27933 I CuscAgent: hotword type : -1   input:暂停
+06-17 22:04:08.607 27933 27997 I StateManager: musicControlPause: focus: , media pkg: com.cusc.media, MVForeground: false, audio type: media state:none
+06-17 22:04:08.607 27933 27997 I CuscAgent: is need sr:false
+06-17 22:04:08.607 27933 27997 I CuscAgent: stop speak start: callingpid=27933
+06-17 22:04:08.607 27933 27997 I CuscAgent: stop speak end
+06-17 22:04:08.653 27933 27947 I StateManager: dealMediaState: {"activeStatus":"bg","audioType":"","data":{"dataInfo":{"artist":"Alexandra Stan","song":"All My People"}},"sceneStatus":"paused"}
+06-17 22:04:08.667 27933 27947 I StateManager: dealMediaState: {"activeStatus":"bg","audioType":"","data":{"dataInfo":{"artist":"Alexandra Stan","song":"All My People"}},"sceneStatus":"paused"}
+06-17 22:04:08.670 27933 27947 I StateManager: dealMediaState: {"activeStatus":"bg","audioType":"","data":{"dataInfo":{"artist":"Alexandra Stan","song":"All My People"}},"sceneStatus":"paused"}
+06-17 22:04:08.671 27933 27933 I CuscAgent: set reject success
+06-17 22:04:08.676 27933 27947 I StateManager: dealMediaState: {"activeStatus":"bg","audioType":"","data":{"dataInfo":{"artist":"Alexandra Stan","song":"All My People"}},"sceneStatus":"paused"}
+06-17 22:04:08.835 27933 27933 I CuscAgent: =======onPlayBegin=======d9304a38-6510-42b5-9ff1-4f409799b653
+06-17 22:04:10.124 27933 17430 I CuscAgent: startInteraction from:2, is open OneShot:true, interaction state:4
+06-17 22:04:10.124 27933 17430 I CuscAgent: strongStopInteraction
+06-17 22:04:10.126 27933 17430 I CuscAgent: reject:[]
+06-17 22:04:10.131 27933 27933 I CuscAgent: stop speak start: callingpid=27933
+06-17 22:04:10.131 27933 27933 I CuscAgent: stop speak end
+06-17 22:04:10.131 27933 27933 I CuscAgent: stop speak end
+06-17 22:04:10.131 27933 27933 I CuscAgent: cloud dm is connect:false
+06-17 22:04:10.133 27933 27933 I StateManager: current top activity is: com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:04:10.148 27933 27933 I StateManager: current top activity is: com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:04:10.150 27933 27933 I StateManager: current top activity is: com.tencent.qqmusiccar.app.activity.AppStarterActivity
+06-17 22:04:10.151 27933 27933 I StateManager: activity change  launcher false isPanelOpened : false isOccupySpace: false  isLauncherShowing: false
+06-17 22:04:10.284 27933 27933 I CuscAgent: =======onPlayCompleted=======d9304a38-6510-42b5-9ff1-4f409799b653
+06-17 22:04:10.286 27933 27933 W CuscAgent: onPostExecute: 0

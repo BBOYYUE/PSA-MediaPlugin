@@ -1,0 +1,169 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        d843c9d com.cusc.media/.MainActivity filter 1dec05d
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Service Resolver Table:
+  Non-Data Actions:
+      com.cusc.media.base.player.MUSIC_SERVICE:
+        a33d512 com.cusc.media/.base.player.MusicService filter b34c907
+          Action: "com.cusc.media.base.player.MUSIC_SERVICE"
+      android.service.notification.NotificationListenerService:
+        e964e3 com.cusc.media/.base.player.MediaSessionListenerService filter d23ea34 permission android.permission.BIND_NOTIFICATION_LISTENER_SERVICE
+          Action: "android.service.notification.NotificationListenerService"
+
+Permissions:
+  Permission [com.cusc.media.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION] (a687e86):
+    sourcePackage=com.cusc.media
+    uid=10048 gids=null type=0 prot=signature
+    perm=Permission{aaf4ee0 com.cusc.media.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION}
+    packageSetting=PackageSetting{1a09774 com.cusc.media/10048}
+
+Key Set Manager:
+  [com.cusc.media]
+      Signing KeySets: 1
+
+Packages:
+  Package [com.cusc.media] (1a09774):
+    userId=10048
+    pkg=Package{7ed0599 com.cusc.media}
+    codePath=/data/app/com.cusc.media-fUWBw_oka-aKhlhZ_wBJLg==
+    resourcePath=/data/app/com.cusc.media-fUWBw_oka-aKhlhZ_wBJLg==
+    legacyNativeLibraryDir=/data/app/com.cusc.media-fUWBw_oka-aKhlhZ_wBJLg==/lib
+    primaryCpuAbi=null
+    secondaryCpuAbi=null
+    versionCode=5000 minSdk=28 targetSdk=34
+    versionName=1.2
+    splits=[base]
+    apkSigningVersion=2
+    applicationInfo=ApplicationInfo{4f6305e com.cusc.media}
+    flags=[ SYSTEM HAS_CODE ALLOW_CLEAR_USER_DATA UPDATED_SYSTEM_APP ALLOW_BACKUP ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ]
+    dataDir=/data/user/0/com.cusc.media
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2026-06-17 22:03:58
+    firstInstallTime=2009-01-01 00:00:00
+    lastUpdateTime=2026-06-17 22:03:58
+    signatures=PackageSignatures{6c6ce3 version:2, signatures:[b4addb29], past signatures:[]}
+    installPermissionsFixed=true
+    pkgFlags=[ SYSTEM HAS_CODE ALLOW_CLEAR_USER_DATA UPDATED_SYSTEM_APP ALLOW_BACKUP ]
+    declared permissions:
+      com.cusc.media.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: prot=signature, INSTALLED
+    requested permissions:
+      android.permission.INTERNET
+      android.permission.FOREGROUND_SERVICE
+      android.permission.DELETE_PACKAGES
+      android.permission.BIND_NOTIFICATION_LISTENER_SERVICE
+      com.cusc.media.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+    install permissions:
+      com.cusc.media.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true
+      android.permission.FOREGROUND_SERVICE: granted=true
+      android.permission.INTERNET: granted=true
+      android.permission.BIND_NOTIFICATION_LISTENER_SERVICE: granted=true
+      android.permission.DELETE_PACKAGES: granted=true
+    User 0: ceDataInode=69 installed=true hidden=false suspended=false stopped=false notLaunched=false enabled=0 instant=false virtual=false
+      gids=[3003]
+      runtime permissions:
+
+Hidden system packages:
+  Package [com.cusc.media] (1e9b6e0):
+    userId=10048
+    pkg=Package{77b4d99 com.cusc.media}
+    codePath=/system/app/PSA_Media
+    resourcePath=/system/app/PSA_Media
+    legacyNativeLibraryDir=/system/app/PSA_Media/lib
+    primaryCpuAbi=arm64-v8a
+    secondaryCpuAbi=null
+    versionCode=1190 minSdk=23 targetSdk=27
+    versionName=v202403121802
+    splits=[base]
+    apkSigningVersion=3
+    applicationInfo=ApplicationInfo{e7ad85e com.cusc.media}
+    flags=[ SYSTEM HAS_CODE ALLOW_CLEAR_USER_DATA UPDATED_SYSTEM_APP LARGE_HEAP ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION PARTIALLY_DIRECT_BOOT_AWARE ]
+    dataDir=/data/user/0/com.cusc.media
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    usesOptionalLibraries:
+      org.apache.http.legacy
+    usesLibraryFiles:
+      /system/framework/org.apache.http.legacy.boot.jar
+    timeStamp=2009-01-01 00:00:00
+    firstInstallTime=2009-01-01 00:00:00
+    lastUpdateTime=2009-01-01 00:00:00
+    signatures=PackageSignatures{6c6ce3 version:2, signatures:[b4addb29], past signatures:[]}
+    installPermissionsFixed=false
+    pkgFlags=[ SYSTEM HAS_CODE ALLOW_CLEAR_USER_DATA LARGE_HEAP ]
+    declared permissions:
+      android.car.permission.CAR_VENDOR_EXTENSION: prot=normal
+    requested permissions:
+      android.permission.WRITE_MEDIA_STORAGE
+      android.permission.ACCESS_NETWORK_STATE
+      android.permission.INTERNET
+      android.permission.READ_PHONE_STATE
+      android.permission.READ_EXTERNAL_STORAGE
+      android.permission.WRITE_EXTERNAL_STORAGE
+      android.permission.SYSTEM_ALERT_WINDOW
+      android.permission.SYSTEM_OVERLAY_WINDOW
+      android.permission.ACCESS_WIFI_STATE
+      android.permission.CHANGE_WIFI_STATE
+      android.permission.MODIFY_AUDIO_SETTINGS
+      android.permission.CHANGE_NETWORK_STATE
+      android.permission.RECORD_AUDIO
+      android.car.permission.CAR_CONTROL_AUDIO_SETTINGS
+      android.car.permission.CAR_CONTROL_AUDIO_VOLUME
+      android.car.permission.CAR_RADIO
+      android.permission.ACCESS_BROADCAST_RADIO
+      android.permission.BLUETOOTH
+      android.permission.KILL_BACKGROUND_PROCESSES
+      android.permission.FORCE_STOP_PACKAGES
+      android.permission.BLUETOOTH_ADMIN
+      android.permission.INTERACT_ACROSS_USERS
+      android.car.permission.CAR_VENDOR_EXTENSION
+      android.permission.CAMERA
+      android.car.permission.CONTROL_CAR_CLIMATE
+      android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+    install permissions:
+      android.permission.MODIFY_AUDIO_SETTINGS: granted=true
+      android.permission.SYSTEM_ALERT_WINDOW: granted=true
+      android.car.permission.CONTROL_CAR_CLIMATE: granted=true
+      android.car.permission.CAR_VENDOR_EXTENSION: granted=true
+      android.permission.CHANGE_NETWORK_STATE: granted=true
+      android.car.permission.CAR_CONTROL_AUDIO_VOLUME: granted=true
+      android.permission.BLUETOOTH: granted=true
+      android.permission.WRITE_MEDIA_STORAGE: granted=true
+      android.permission.INTERNET: granted=true
+      android.permission.ACCESS_BROADCAST_RADIO: granted=true
+      android.permission.BLUETOOTH_ADMIN: granted=true
+      android.permission.MOUNT_UNMOUNT_FILESYSTEMS: granted=true
+      android.permission.CHANGE_WIFI_STATE: granted=true
+      android.permission.ACCESS_NETWORK_STATE: granted=true
+      android.permission.INTERACT_ACROSS_USERS: granted=true
+      android.permission.KILL_BACKGROUND_PROCESSES: granted=true
+      android.permission.FORCE_STOP_PACKAGES: granted=true
+      android.permission.ACCESS_WIFI_STATE: granted=true
+      android.car.permission.CAR_CONTROL_AUDIO_SETTINGS: granted=true
+    User 0: ceDataInode=69 installed=true hidden=false suspended=false stopped=false notLaunched=false enabled=0 instant=false virtual=false
+      gids=[3002, 1023, 3003, 1013, 3001]
+      runtime permissions:
+
+Package Changes:
+  Sequence number=112
+  User 0:
+    seq=32, package=com.tencent.qqmusiccar
+    seq=77, package=com.bandwa.openadb
+    seq=91, package=com.android.settings
+    seq=96, package=com.cusc.service.groupoil
+    seq=111, package=com.cusc.media
+
+
+Dexopt state:
+  [com.cusc.media]
+    path: /data/app/com.cusc.media-fUWBw_oka-aKhlhZ_wBJLg==/base.apk
+      arm64: [status=speed-profile] [reason=install]
+
+
+Compiler stats:
+  [com.cusc.media]
+     base.apk - 410
