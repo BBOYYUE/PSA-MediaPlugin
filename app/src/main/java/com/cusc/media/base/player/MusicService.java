@@ -116,15 +116,11 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
                                 PlaybackStateCompat.ACTION_PLAY_FROM_MEDIA_ID
                 )
                 .setState(PlaybackStateCompat.STATE_STOPPED, 0, 1.0f);
-        // 尝试给语音助手提供 audioType 线索
+        // 模仿原厂 ileja 模块的 audioType，让语音助手识别为 web_music
         Bundle hintExtras = new Bundle();
         hintExtras.putString("audioType", "music");
-        hintExtras.putString("com.cusc.media.type", "music");
-        // 标记为活跃媒体会话
         hintExtras.putBoolean("android.media.playback.isMusic", true);
         stateBuilder.setExtras(hintExtras);
-        // 设置当前活跃的队列项，帮助系统识别媒体状态
-        stateBuilder.setActiveQueueItemId(0);
         mediaSession.setPlaybackState(stateBuilder.build());
 
         // 步骤3：初始化QueueManager
@@ -340,7 +336,6 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         merged.putString("audioType", "music");
         merged.putBoolean("android.media.playback.isMusic", true);
         stateBuilder.setExtras(merged);
-        stateBuilder.setActiveQueueItemId(0);
         mediaSession.setPlaybackState(stateBuilder.build());
         Log.d(TAG, "Sync playback state: state=" + state.getState() + ", pos=" + state.getPosition() + ", lastUpdateTime=" + state.getLastPositionUpdateTime());
     }
