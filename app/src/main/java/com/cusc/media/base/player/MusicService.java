@@ -409,8 +409,8 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         return null;
     }
 
-    /** 启动默认音乐 APP，供 onPlay / onPlayFromSearch fallback 使用 */
-    private void launchMusicApp() {
+    /** 启动默认音乐 APP，供外部调用 */
+    public void launchMusicApp() {
         String targetPkg = resolveFallbackMusicPackage();
         if (targetPkg == null) return;
         Intent launchIntent = getPackageManager().getLaunchIntentForPackage(targetPkg);
@@ -556,5 +556,9 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
 
     public MediaSessionCompat getMediaSession() {
         return mediaSession;
+    }
+
+    public MediaController getMediaController() {
+        return mMediaController;
     }
 }
