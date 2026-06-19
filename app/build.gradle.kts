@@ -44,4 +44,6 @@ android {
 
 dependencies {
     implementation("androidx.media:media:1.7.0")
+    implementation("com.squareup.okhttp3:okhttp:3.12.13")
+    implementation("org.json:json:20231013")
 }
