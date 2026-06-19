@@ -230,8 +230,8 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         // 步骤8：初始化 sessionActivity（fallback 到 QQ音乐），使桌面卡片点击可用
         updateSessionActivity(mMediaController);
 
-        // 启动 DUI WebSocket 监听
-        startService(new Intent(this, DuiWsService.class));
+        // 启动 DDS 云端命令监听
+        startService(new Intent(this, PsaDdsService.class));
     }
 
     /**
