@@ -1,7 +1,7 @@
 # PSA Media Plugin (PSA 多媒体插件)
 
 ![Claude](https://img.shields.io/badge/AI%20Assisted-Claude-orange?logo=anthropic&logoColor=white)
-[![Android Build](https://github.com/ShaobaiLee/PSA-MediaPlugin/actions/workflows/android.yml/badge.svg)](https://github.com/ShaobaiLee/PSA-MediaPlugin/actions/workflows/android.yml)
+[![Android Build](https://github.com/band-wa/PSA-MediaPlugin/actions/workflows/android.yml/badge.svg)](https://github.com/band-wa/PSA-MediaPlugin/actions/workflows/android.yml)
 
 一个轻量级的多媒体插件，专为 Blue-i 3.0 车机系统设计。用于桥接第三方音乐 APP，使其能够通过系统的原厂桌面卡片进行显示与控制。
 
@@ -15,25 +15,33 @@
 
 本插件通过 Android 的 `NotificationListenerService` 获取媒体信息。以下是主流音乐 APP 的兼容性测试状态：
 
-| 音乐 APP | 歌曲名 | 歌手名 | 专辑封面 | 播放控制 |
-| :--- | :---: | :---: | :---: | :---: |
-| **QQ 音乐车机版** | ✅ | ✅ | ✅ | ✅ |
-| **酷狗音乐车机版** | ❓ | ❓ | ❓ | ❓ |
-| **酷我音乐车机版** | ❓ | ❓ | ❓ | ❓ |
-| **网易云音乐车机版** | ❓ | ❓ | ❓ | ❓ |
-| **汽水音乐车机版** | ✅ | ✅ | ✅ | ✅ |
-| **Spotify** | ❓ | ❓ | ❓ | ❓ |
-| **Apple Music** | ❓ | ❓ | ❓ | ❓ |
+| 音乐 APP | 歌曲名 | 歌手名 | 专辑封面 | 歌词 | 播放控制 |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **QQ 音乐车机版** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **酷狗音乐车机版** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **酷我音乐车机版** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **网易云音乐车机版** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **汽水音乐车机版** | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Spotify** | ❓ | ❓ | ❓ | ❓ | ❓ |
+| **Apple Music** | ❓ | ❓ | ❓ | ❓ | ❓ |
 
 > **说明**: 兼容性取决于 APP 是否在通知栏中通过标准的 `MediaMetadata` 暴露媒体信息。
 > - ✅ : 完美支持
 > - ❌ : 不支持 / 存在问题
 > - ❓ : 尚未测试
 
+## 📝 歌词支持
+
+插件自动为桌面大卡片获取并同步歌词，无需音乐 APP 本身提供：
+
+- 优先匹配歌曲同目录的本地 `.lrc` 文件，找不到时从酷狗 / QQ音乐 / 网易云 / 酷我的公开接口按歌名智能匹配
+- 匹配结果本地缓存，同一首歌离线也能显示
+- 在线匹配需要网络
+
 ## 🛠️ 安装指南
 
 1. 拉取默认分支最新代码。
-2. 将 **Build Variants** 设置为 **release**（用以解决签名问题），编译后安装到您的车机上。
+2. 编译后安装到您的车机上。
 3. 打开 **多媒体插件** 应用。
 4. 授予 **通知访问权限**（这是获取歌名和封面的必要条件）。
 5. 插件将自动在后台运行。

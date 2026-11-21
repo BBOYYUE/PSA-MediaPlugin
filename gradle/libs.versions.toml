@@ -1,9 +1,11 @@
 [versions]
 agp = "8.3.2"
 appcompat = "1.7.1"
+zxing = "3.5.2"
 
 [libraries]
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+zxing-core = { group = "com.google.zxing", name = "core", version.ref = "zxing" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

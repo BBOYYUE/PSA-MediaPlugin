@@ -11,9 +11,12 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.session.MediaController;
+import android.media.session.MediaSession;
+import android.media.session.PlaybackState;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.ResultReceiver;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
@@ -27,17 +30,27 @@ import android.content.Context;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import com.cusc.bean.media.AudioInfo;
+import com.cusc.media.lyric.LyricsManager;
+
 import java.util.List;
 
 public class MusicService extends MediaBrowserServiceCompat implements MediaInfoCallback {
     private static final String TAG = "SimpleMusicService";
     private static final String MY_MEDIA_ROOT_ID = "media_root_id";
     private static final String CHANNEL_ID = "channel_1";
+    private static final String COMMAND_GET_AUDIO_LRC = "com.cusc.media.command.getAudioLrc";
+    private static final String COMMAND_SET_AUDIO_LIST = "com.cusc.media.command.setAudioList";
+    private static final String COMMAND_SET_NULL_AUDIO_LIST = "com.cusc.media.command.setNullAudioList";
+    private static final String COMMAND_CLEAR_AUDIO_LIST = "com.cusc.media.command.clearAudioList";
+    private static final String KEY_MUSIC_ID_L = "MUSIC_ID_L";
+    private static final int RESULT_OK = 200;
 
     private MediaSessionCompat mediaSession;
     private PlaybackStateCompat.Builder stateBuilder;
     private QueueManager mQueueManager;
     private AlbumArtServer mAlbumArtServer;
+    private LyricsManager lyricsManager;
 
     /** 当前目标媒体 App 的 MediaController，由 MediaSessionListenerService 回调注入 */
     private MediaController mMediaController;
@@ -68,10 +81,13 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     private long latestDuration = 180000; // 默认3分钟
     private String latestAlbumArtUri = null;
     private String lastPackageName = null;
+    private String currentFilePath = null;
     // 用于生成唯一的mediaId（默认值避免桌面读取时为 null）
     private String currentMediaId = "0";
     // 缓存的 APP 显示图标 URL
     private String displayIconUrl = null;
+    // 上次已持久化的歌曲键（title+artist），用于判断是否为真正的切歌，避免同歌封面纠正时多余写盘
+    private String lastPersistedSongKey = null;
 
     private static final String PREFS_NAME = "MusicServicePrefs";
     private static final String PREF_KEY_TITLE = "last_title";
@@ -91,6 +107,7 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         mAlbumArtServer.start();
 
         // 步骤0：恢复上次播放的元数据
+        lyricsManager = LyricsManager.getInstance(this);
         restoreLastMediaInfo();
 
         // 步骤1：初始化MediaSession
@@ -216,6 +233,70 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
                     }
                 }
             }
+            @Override
+            public void onSkipToQueueItem(long id) {
+                super.onSkipToQueueItem(id);
+                Log.d(TAG, "SkipToQueueItem: " + id);
+                if (mMediaController == null) {
+                    return;
+                }
+                if (mQueueManager != null && mQueueManager.isHistoryPlaylist()) {
+                    AudioInfo info = mQueueManager.findHistoryItem(id);
+                    if (info != null) {
+                        String query = info.audioName + " " + info.singerName;
+                        Log.d(TAG, "playFromSearch: " + query);
+                        mMediaController.getTransportControls().playFromSearch(query, new Bundle());
+                        return;
+                    }
+                }
+                mMediaController.getTransportControls().skipToQueueItem(id);
+            }
+
+            @Override
+            public void onSeekTo(long pos) {
+                super.onSeekTo(pos);
+                Log.d(TAG, "SeekTo: " + pos);
+                if (mMediaController != null) {
+                    mMediaController.getTransportControls().seekTo(pos);
+                }
+            }
+
+            @Override
+            public void onCommand(String command, Bundle args, ResultReceiver cb) {
+                super.onCommand(command, args, cb);
+                if (COMMAND_SET_AUDIO_LIST.equals(command)) {
+                    Log.d(TAG, "onCommand setAudioList");
+                    if (args != null) {
+                        args.setClassLoader(AudioInfoList.class.getClassLoader());
+                        AudioInfoList audioInfoList = args.getParcelable("AudioInfoList");
+                        if (mQueueManager != null) {
+                            mQueueManager.handleOemAudioList(audioInfoList);
+                        }
+                    }
+                    if (cb != null) {
+                        cb.send(RESULT_OK, new Bundle());
+                    }
+                    return;
+                }
+                if (COMMAND_SET_NULL_AUDIO_LIST.equals(command)
+                        || COMMAND_CLEAR_AUDIO_LIST.equals(command)) {
+                    Log.d(TAG, "onCommand " + command);
+                    if (mQueueManager != null) {
+                        mQueueManager.clearPlaylistQueue();
+                    }
+                    if (cb != null) {
+                        cb.send(RESULT_OK, new Bundle());
+                    }
+                    return;
+                }
+                if (!COMMAND_GET_AUDIO_LRC.equals(command) || cb == null) {
+                    return;
+                }
+                long musicId = args != null ? args.getLong(KEY_MUSIC_ID_L) : 0;
+                String requestMediaId = String.valueOf(musicId);
+                Log.d(TAG, "onCommand getAudioLrc, mediaId=" + requestMediaId);
+                lyricsManager.request(requestMediaId, cb::send);
+            }
         });
 
         // 步骤5：注册MediaSessionListenerService的回调
@@ -264,11 +345,18 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         latestDuration = prefs.getLong(PREF_KEY_DURATION, 180000);
         latestAlbumArtUri = prefs.getString(PREF_KEY_ALBUM_ART, null);
         
-        // 恢复 currentMediaId，确保排重逻辑正常
-        String uniqueKey = latestTitle + latestArtist;
+        // 恢复 currentMediaId，计算方式需与 onMediaInfoUpdated 一致（纳入封面标识）
+        String artKey = (latestAlbumArtUri != null) ? latestAlbumArtUri : "";
+        String uniqueKey = latestTitle + latestArtist + artKey;
         currentMediaId = String.valueOf(Math.abs(uniqueKey.hashCode()));
+        lastPersistedSongKey = latestTitle + latestArtist;
         
         Log.d(TAG, "Restored media info: " + latestTitle + " - " + latestArtist);
+
+        if (lyricsManager != null) {
+            lyricsManager.setCurrent(currentMediaId, latestTitle, latestArtist, latestDuration,
+                    lastPackageName, null);
+        }
     }
 
     private void saveLastMediaInfo() {
@@ -283,7 +371,7 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
     }
 
     @Override
-    public void onMediaInfoUpdated(String title, String artist, long duration, String albumArtUri) {
+    public void onMediaInfoUpdated(String title, String artist, long duration, String albumArtUri, String filePath) {
         Log.d(TAG, "Received latest media info: " + title + "-" + artist + ", duration: " + duration);
 
         // 更新本地存储的最新媒体信息
@@ -292,12 +380,20 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         if (duration > 0) this.latestDuration = duration;
         this.latestAlbumArtUri = albumArtUri;
 
-        // 使用 title + artist 的哈希值作为 mediaId，保证同一首歌 ID 不变
-        // 避免因 ID 变化导致 UI 频繁刷新或专辑图重新加载
-        String uniqueKey = latestTitle + latestArtist;
+        // 使用 title + artist + 封面标识 的哈希值作为 mediaId。
+        // 纳入封面标识（file://album_art_<内容哈希>.jpg 或 content:// URI，均为稳定、不含端口的标识）：
+        // 当封面被纠正（同一首歌但封面 URI 变化）时 mediaId 随之改变，
+        // 才能让原厂桌面卡片的 isSameMedia(mediaId) 去重判为不同、从而刷新封面。
+        // 注意：不要用带随机端口的 http URL，避免服务重启导致 mediaId 抖动。
+        String artKey = (latestAlbumArtUri != null) ? latestAlbumArtUri : "";
+        String uniqueKey = latestTitle + latestArtist + artKey;
         String newMediaId = String.valueOf(Math.abs(uniqueKey.hashCode()));
-        boolean songChanged = !newMediaId.equals(currentMediaId);
         currentMediaId = newMediaId;
+        currentFilePath = filePath;
+
+        // 持久化判定仅看 title+artist 是否变化，避免同一首歌封面纠正时产生多余磁盘写入
+        String songKey = latestTitle + latestArtist;
+        boolean songMetaChanged = !songKey.equals(lastPersistedSongKey);
 
         // 如果是 file:// URI，转换为 HTTP URL 供 Launcher 读取
         String displayUri = mAlbumArtServer.getHttpUrl(latestAlbumArtUri);
@@ -320,9 +416,16 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
 
         // 更新MediaSession元数据
         updateMediaMetadata();
+
+        lyricsManager.setCurrent(currentMediaId, latestTitle, latestArtist, latestDuration,
+                lastPackageName, currentFilePath);
+        if (mQueueManager != null) {
+            mQueueManager.addHistoryTrack(currentMediaId, latestTitle, latestArtist, latestDuration);
+        }
         
         // 仅在歌曲切换时持久化，避免同一首歌的重复元数据回调触发多余磁盘写入
-        if (songChanged) {
+        if (songMetaChanged) {
+            lastPersistedSongKey = songKey;
             saveLastMediaInfo();
         }
     }
@@ -339,6 +442,10 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
         merged.putString("audioType", "music");
         merged.putBoolean("android.media.playback.isMusic", true);
         stateBuilder.setExtras(merged);
+        long activeQueueItemId = state.getActiveQueueItemId();
+        if (activeQueueItemId >= 0) {
+            stateBuilder.setActiveQueueItemId(activeQueueItemId);
+        }
         mediaSession.setPlaybackState(stateBuilder.build());
         Log.d(TAG, "Sync playback state: state=" + state.getState() + ", pos=" + state.getPosition() + ", lastUpdateTime=" + state.getLastPositionUpdateTime());
     }
@@ -353,10 +460,34 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
 
     @Override
     public void onMediaControllerChanged(MediaController controller) {
+        boolean appSwitched = mMediaController != null && controller != null
+                && !controller.getPackageName().equals(mMediaController.getPackageName());
         mMediaController = controller;
         Log.d(TAG, "MediaController updated: " + (controller != null ? controller.getPackageName() : "null"));
-        // 动态更新 sessionActivity：点击桌面卡片时打开当前正在播放的 APP
         updateSessionActivity(controller);
+        if (mQueueManager == null) {
+            return;
+        }
+        if (appSwitched) {
+            mQueueManager.resetPlaylist();
+        } else if (controller != null) {
+            mQueueManager.mirrorQueue(controller.getQueueTitle(), controller.getQueue());
+        }
+    }
+
+    @Override
+    public void onQueueUpdated(CharSequence queueTitle, List<MediaSession.QueueItem> queue) {
+        if (mQueueManager != null) {
+            mQueueManager.mirrorQueue(queueTitle, queue);
+        }
+    }
+
+    public long getActiveQueueItemId() {
+        if (mMediaController == null) {
+            return -1;
+        }
+        PlaybackState state = mMediaController.getPlaybackState();
+        return state != null ? state.getActiveQueueItemId() : -1;
     }
 
     /**
@@ -462,6 +593,14 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
 
     @SuppressLint("ForegroundServiceType")
     private void initNotification() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_ID,
+                    NotificationManager.IMPORTANCE_LOW);
+            NotificationManager nm = getSystemService(NotificationManager.class);
+            if (nm != null) {
+                nm.createNotificationChannel(channel);
+            }
+        }
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID).build();
         startForeground(1, notification);
     }
@@ -563,5 +702,16 @@ public class MusicService extends MediaBrowserServiceCompat implements MediaInfo
 
     public MediaController getMediaController() {
         return mMediaController;
+    }
+
+    public String getPlayingPackageName() {
+        if (mMediaController == null) {
+            return null;
+        }
+        PlaybackState state = mMediaController.getPlaybackState();
+        if (state != null && state.getState() == PlaybackState.STATE_PLAYING) {
+            return mMediaController.getPackageName();
+        }
+        return null;
     }
 }

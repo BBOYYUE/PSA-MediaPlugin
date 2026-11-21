@@ -3,11 +3,20 @@
     <string name="app_name">Media Plugin</string>
     <string name="title_media_plugin">多媒体插件</string>
     <string name="app_info_title">插件说明</string>
-    <string name="app_info">安装后无需手动操作，用于PSA车机原厂桌面音乐卡片支持第三方音乐APP，原多媒体将被覆盖，可点击下方按钮恢复。</string>
+    <string name="app_info">安装后无需手动操作，用于原厂桌面音乐卡片支持第三方音乐APP，音乐APP开始播放后自动连接。</string>
     <string name="btn_restore">恢复多媒体</string>
     <string name="permission_status_label">通知读取权限</string>
     <string name="permission_status_granted">已获取</string>
     <string name="permission_status_not_granted">未获取</string>
     <string name="connected_app_label">当前连接的应用</string>
     <string name="none">无</string>
+    <string name="qr_caption">扫码访问开源仓库</string>
+    <string name="qr_repo_url">https://github.com/band-wa/PSA-MediaPlugin</string>
+    <string name="supported_apps_title">支持的第三方音乐APP</string>
+    <string name="app_qq_music">QQ音乐</string>
+    <string name="app_qishui_music">汽水音乐</string>
+    <string name="app_netease_music">网易云音乐</string>
+    <string name="app_kugou_music">酷狗音乐</string>
+    <string name="app_kuwo_music">酷我音乐</string>
+    <string name="app_supported_badge">✓ 已支持</string>
 </resources>

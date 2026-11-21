@@ -13,3 +13,4 @@
 
 # PSA
 -keep class com.cusc.media.** { *; }
+-keep class com.cusc.bean.media.Lrc { *; }

@@ -1,128 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:paddingStart="16dp"
-    android:paddingTop="36dp"
-    android:paddingEnd="16dp"
-    android:paddingBottom="16dp"
+    android:fillViewport="true"
     android:background="@drawable/bg_gradient_vista"
     android:clipToPadding="false"
     android:clipChildren="false">
 
-    <!-- Title -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_media_plugin"
-        android:textSize="28sp"
-        android:textColor="@color/primary_text"
-        android:gravity="center"
-        android:paddingBottom="24dp" />
-
-    <!-- Info Card -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/card_bg"
-        android:elevation="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="24dp"
-        android:paddingStart="16dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="16dp"
-        android:paddingBottom="16dp">
+        android:gravity="center_horizontal"
+        android:paddingStart="@dimen/space_lg"
+        android:paddingTop="@dimen/space_xxl"
+        android:paddingEnd="@dimen/space_lg"
+        android:paddingBottom="@dimen/space_lg"
+        android:clipToPadding="false"
+        android:clipChildren="false">
 
+        <!-- Header -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_info_title"
-            android:textSize="22sp"
-            android:textColor="@color/status_title"
-            android:paddingBottom="8dp" />
+            android:text="@string/title_media_plugin"
+            android:gravity="center"
+            style="@style/AppTitle" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/app_info"
-            android:textSize="20sp"
-            android:textColor="@color/status_text"
-            android:lineSpacingExtra="4dp" />
+            android:gravity="center"
+            android:paddingTop="@dimen/space_sm"
+            android:paddingBottom="@dimen/space_xl"
+            style="@style/AppSubtitle" />
 
-        <!-- Permission Status -->
-        <LinearLayout
-            android:id="@+id/layout_permission_status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="16dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:padding="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/permission_status_label"
-                android:textSize="22sp"
-                android:textColor="@color/status_title" />
-
-            <TextView
-                android:id="@+id/text_permission_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-
-        </LinearLayout>
-
-        <!-- Connected App -->
+        <!-- Status Card -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginTop="8dp"
-            android:padding="8dp">
+            android:orientation="vertical"
+            android:elevation="@dimen/elevation_card"
+            android:layout_marginBottom="@dimen/space_lg"
+            android:padding="@dimen/space_lg"
+            style="@style/SurfaceCard">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- Permission Status (clickable) -->
+            <LinearLayout
+                android:id="@+id/layout_permission_status"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/connected_app_label"
-                android:textSize="22sp"
-                android:textColor="@color/status_title" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="?android:attr/selectableItemBackground"
+                android:paddingTop="@dimen/space_sm"
+                android:paddingBottom="@dimen/space_sm">
 
-            <TextView
-                android:id="@+id/text_connected_app"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/permission_status_label"
+                    style="@style/AppSectionTitle" />
+
+                <TextView
+                    android:id="@+id/text_permission_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    style="@style/AppBody" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorDivider" />
+
+            <!-- Connected App -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textSize="20sp"
-                android:textColor="@color/status_text"
-                android:text="@string/none"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingTop="@dimen/space_sm"
+                android:paddingBottom="@dimen/space_sm">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/connected_app_label"
+                    style="@style/AppSectionTitle" />
+
+                <TextView
+                    android:id="@+id/text_connected_app"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/none"
+                    style="@style/AppBody" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
+        <!-- Action Button -->
+        <Button
+            android:id="@+id/btn_restore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_xl"
+            android:text="@string/btn_restore"
+            style="@style/PrimaryButton" />
+
+        <!-- Supported Apps Card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:elevation="@dimen/elevation_card"
+            android:layout_marginBottom="@dimen/space_xl"
+            android:padding="@dimen/space_lg"
+            style="@style/MutedCard">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/supported_apps_title"
+                android:layout_marginBottom="@dimen/space_lg"
+                style="@style/AppSectionTitle" />
+
+            <include
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/view_supported_apps_grid" />
+
+        </LinearLayout>
+
+        <!-- QR Code (sits below the supported apps card with spacing) -->
+        <ImageView
+            android:id="@+id/image_qr_code"
+            android:layout_width="@dimen/qr_size"
+            android:layout_height="@dimen/qr_size"
+            android:layout_marginTop="@dimen/space_xxl"
+            android:contentDescription="@string/qr_caption"
+            android:background="@color/colorSurface"
+            android:elevation="@dimen/elevation_card" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_sm"
+            android:text="@string/qr_caption"
+            style="@style/AppCaption" />
 
     </LinearLayout>
 
-    <!-- Action Button -->
-    <Button
-        android:id="@+id/btn_restore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="200dp"
-        android:text="@string/btn_restore"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:background="@drawable/btn_vista_style"
-        android:textAllCaps="false"
-        android:elevation="4dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
-
-</LinearLayout>
+</ScrollView>

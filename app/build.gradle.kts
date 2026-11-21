@@ -10,8 +10,8 @@ android {
         applicationId = "com.cusc.media"
         minSdk = 28
         targetSdk = 34
-        versionCode = 5000
-        versionName = "1.2"
+        versionCode = 6004
+        versionName = "1.7.1"
         resConfigs("en")
     }
 
@@ -26,6 +26,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            signingConfig = signingConfigs.getByName("release")
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
@@ -45,4 +48,5 @@ android {
 dependencies {
     implementation("androidx.media:media:1.7.0")
     implementation(files("libs/mini-dds.aar"))
+    implementation(libs.zxing.core)
 }
